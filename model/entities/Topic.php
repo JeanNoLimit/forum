@@ -5,16 +5,19 @@
 
     final class Topic extends Entity{
 
-        private $id;
-        private $title;
-        private $user;
-        private $creationdate;
-        private $closed;
+        private int $id;
+        private string $title;
+        private DateTime $creationDate;
+        private bool $closed;
+        private int $user;
+        private int $category;
 
         public function __construct($data){         
             $this->hydrate($data);        
         }
  
+
+
         /**
          * Get the value of id
          */ 
@@ -56,6 +59,46 @@
         }
 
         /**
+         * Get the value of creationDate
+         */ 
+        public function getCreationDate()
+        {
+                return $this->creationDate;
+        }
+
+        /**
+         * Set the value of creationDate
+         *
+         * @return  self
+         */ 
+        public function setCreationDate($creationDate)
+        {
+                $this->creationDate = $creationDate;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of closed
+         */ 
+        public function getClosed()
+        {
+                return $this->closed;
+        }
+
+        /**
+         * Set the value of closed
+         *
+         * @return  self
+         */ 
+        public function setClosed($closed)
+        {
+                $this->closed = $closed;
+
+                return $this;
+        }
+
+        /**
          * Get the value of user
          */ 
         public function getUser()
@@ -75,32 +118,22 @@
                 return $this;
         }
 
-        public function getCreationdate(){
-            $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
-            return $formattedDate;
-        }
-
-        public function setCreationdate($date){
-            $this->creationdate = new \DateTime($date);
-            return $this;
-        }
-
         /**
-         * Get the value of closed
+         * Get the value of category
          */ 
-        public function getClosed()
+        public function getCategory()
         {
-                return $this->closed;
+                return $this->category;
         }
 
         /**
-         * Set the value of closed
+         * Set the value of category
          *
          * @return  self
          */ 
-        public function setClosed($closed)
+        public function setCategory($category)
         {
-                $this->closed = $closed;
+                $this->category = $category;
 
                 return $this;
         }
