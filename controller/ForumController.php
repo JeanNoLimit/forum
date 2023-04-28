@@ -53,6 +53,20 @@
 
         }
 
+        public function listTopicsByCategory($id){
+
+            $topicManager = new TopicManager();
+            $categoryManager = new CategoryManager();
+
+            return [
+                "view" =>VIEW_DIR."forum/listTopicsByCategory.php",
+                "data" => [
+                    "topics" => $topicManager->findTopicsByCategory($id),
+                    "category"=> $categoryManager->findOneById($id)
+                ]
+            ];
+        }
+
         
 
     }
