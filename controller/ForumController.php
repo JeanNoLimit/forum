@@ -7,21 +7,50 @@
     use App\ControllerInterface;
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
+    use Model\Managers\CategoryManager;
     
     class ForumController extends AbstractController implements ControllerInterface{
 
         public function index(){
           
-
+            // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
            $topicManager = new TopicManager();
-
+            // var_dump($topicManager);die;
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "topics" => $topicManager->findAll(["creationdate", "DESC"])
+                    "topics" => $topicManager->findAll(["creationDate", "DESC"])
                 ]
             ];
         
+        }
+
+        public function listPosts($id){
+
+            $postManager = new PostManager();
+            $topicManager = new TopicManager();
+
+            return [
+                "view" => VIEW_DIR."forum/listPost.php",
+                "data" => [
+                    "posts" => $postManager->findPostByTopic($id),
+                    "topic" => $topicManager->findOneById($id)
+                ]
+            ];
+        }
+
+        public function listCategory(){
+
+            $categoryManager = new CategoryManager();
+
+            return [
+                "view" => VIEW_DIR."forum/listCategory.php",
+                "data" => [
+                    "categories" => $categoryManager->findAll(["categoryName","ASC"])
+                ]
+
+            ];
+
         }
 
         
