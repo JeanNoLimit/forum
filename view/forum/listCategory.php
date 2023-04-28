@@ -7,6 +7,6 @@ $categories = $result["data"]["categories"];
 
 <?php foreach ($categories as $category){ ?>
 
-    <p><?=$category->getCategoryName() ?></p>
+    <p><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></p>
 
 <?php } ?>
