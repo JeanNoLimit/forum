@@ -1,7 +1,7 @@
 <?php
 
     namespace Model\entities;
-    use App\Entities;
+    use App\Entity;
 
     // Chaque Entity hérite de la classe Entity (du dossier App et auront le même constructeur qui implémente la méthode "hydrate" de la classe Entity)
     final class User extends Entity {
@@ -9,7 +9,7 @@
         private int $id;
         private string $pseudo;
         private string $password;
-        private DateTime $dateInscription;
+        private string $inscriptionDate;
         private string $role;
 
         public function __construct($data){
@@ -83,9 +83,9 @@
         /**
          * Get the value of dateInscription
          */ 
-        public function getDateInscription()
+        public function getinscriptionDate()
         {
-                return $this->dateInscription;
+                return $this->inscriptionDate;
         }
 
         /**
@@ -93,9 +93,9 @@
          *
          * @return  self
          */ 
-        public function setDateInscription($dateInscription)
+        public function setinscriptionDate($inscriptionDate)
         {
-                $this->dateInscription = $dateInscription;
+                $this->inscriptionDate = $inscriptionDate;
 
                 return $this;
         }

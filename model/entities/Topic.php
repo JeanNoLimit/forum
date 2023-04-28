@@ -7,10 +7,10 @@
 
         private int $id;
         private string $title;
-        private DateTime $creationDate;
+        private \DateTime $creationDate;
         private bool $closed;
-        private int $user;
-        private int $category;
+        private User $user;
+        private Category $category;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -73,7 +73,7 @@
          */ 
         public function setCreationDate($creationDate)
         {
-                $this->creationDate = $creationDate;
+                $this->creationDate = new \DateTime ($creationDate);
 
                 return $this;
         }
