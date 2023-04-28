@@ -10,7 +10,9 @@ $topics = $result["data"]['topics'];
 foreach($topics as $topic ){
 
     ?>
-    <p><?=$topic->getTitle()?></p>
+    <p> <a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a> - <?=$topic->getCategory()->getCategoryName() ?></p>
+    <p><?=$topic->getCreationDate()->format("D M Y")?></p>
+    <p><?=$topic->getUser()->getPseudo()?></p>
     <?php
 }
 
