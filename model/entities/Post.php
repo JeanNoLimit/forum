@@ -1,16 +1,16 @@
 <?php
 
-namespace Model\entites;
+namespace Model\Entities;
 
 use App\Entity;
 
 final class Post extends Entity {
 
     private int $id;
-    private DateTime $creationDate;
+    private \DateTime $creationDate;
     private string $text;
-    private int $user;
-    private int $topic;
+    private User $user;
+    private Topic $topic;
 
     public function __construct($data){
         $this->hydrate($data);
@@ -54,7 +54,7 @@ final class Post extends Entity {
      */ 
     public function setCreationDate($creationDate)
     {
-        $this->creationDate = $creationDate;
+        $this->creationDate = new \DateTime($creationDate);
 
         return $this;
     }
