@@ -11,6 +11,8 @@
     
     class ForumController extends AbstractController implements ControllerInterface{
 
+
+        //affichage de la page index -> affichera la liste des topics triés par date de création décroissante
         public function index(){
           
             // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
@@ -25,9 +27,15 @@
         
         }
 
-        public function listPosts($id){
 
+        // Pour l'affichage de la vue des post d'un topic. 
+        public function listPosts($id){
             $postManager = new PostManager();
+            if (isset($_POST['submit'])){
+
+                // ajout en BDD 
+            }
+
             $topicManager = new TopicManager();
 
             return [
@@ -39,6 +47,7 @@
             ];
         }
 
+        //Pour gestion de la vue de la liste des catégories
         public function listCategory(){
 
             $categoryManager = new CategoryManager();
@@ -53,6 +62,7 @@
 
         }
 
+        //Pour la gestion de la vue liste des topics d'une catégorie.
         public function listTopicsByCategory($id){
 
             $topicManager = new TopicManager();
@@ -66,7 +76,7 @@
                 ]
             ];
         }
-
+            // $idLastpost = $Postrepo->add($data);
         
 
     }
