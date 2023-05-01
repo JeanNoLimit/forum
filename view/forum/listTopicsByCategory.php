@@ -3,19 +3,35 @@
     $categorie=$result["data"]["category"];
 ?>
 
-<h1>Liste des sujets de la catégorie <?=$categorie->getCategoryName()?> </h1>
+<div id="generalContainer">
+    <div id="title">
+        <h1>Liste des sujets de la catégorie <?=$categorie->getCategoryName()?> </h1>
+    </div>
 
-<?php
-// Vérifier la présence de topics dans la catégorie pour éviter l'affichage d'un message d'erreur (si $topics=null)
-if(!empty($topics)){
-    foreach($topics as $topic ){
 
-        ?>
-        <p> <a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a> - <?=$topic->getCategory()->getCategoryName() ?></p>
-        <p><?=$topic->getCreationDate()->format("D M Y")?></p>
-        <p><?=$topic->getUser()->getPseudo()?></p>
-        <?php
-    }
-}else{ ?>
-    <p>Catégorie vide</p>
-<?php } ?>
+    <?php
+    // Vérifier la présence de topics dans la catégorie pour éviter l'affichage d'un message d'erreur (si $topics=null)
+    if(!empty($topics)){
+        foreach($topics as $topic ){
+
+            ?>
+            <div class="listContainer">
+                <div class="leftTopicContainer">
+                    <div class="TitleAndCategory">
+                        <h2> <a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></h2>
+                    </div>    
+                    <p><?=$topic->getCreationDate()->format("d-m-Y")?></p>
+                </div>
+                <div class="rightTopicContainer">
+                <p>par <span class="user"><?=$topic->getUser()->getPseudo()?></span></p>
+                </div>
+        </div>
+
+    <?php }
+    }else{ ?>
+        <div class="listContainer">
+            <p>Catégorie vide</p>
+        </div>
+    <?php } ?>
+
+</div>
