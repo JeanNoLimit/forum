@@ -6,12 +6,12 @@ $topic = $result["data"]["topic"];
 // $topicName=$topic->getTitle();
 // echo $topicName;
 ?>
-<div id="borderPost">
+
 <div id="postTitle">
     <h1><?=$topic->getTitle()?></h1>
     <p class="creationDate">date de création : le <?=$topic->getCreationDate()->format("d-m-Y")?></p>
 </div>
-
+<div id="borderPost">
 <div class="button newPost">
         <a href="">Nouveau message</a>
     </div>
