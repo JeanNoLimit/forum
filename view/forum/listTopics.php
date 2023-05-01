@@ -4,12 +4,12 @@ $topics = $result["data"]['topics'];
     
 ?>
 
-<div id="topicContainer">
+<div id="generalContainer">
 
-    <div class="button newTopic">
+    <div class="button newList">
         <a href="">Nouveau Sujet</a>
     </div>
-    
+
     <div id="title">
         <h1>liste des topics</h1>
     </div>
@@ -18,7 +18,7 @@ $topics = $result["data"]['topics'];
     foreach($topics as $topic ){
 
         ?>
-        <div class="listTopicContainer">
+        <div class="listContainer">
             <div class="leftTopicContainer">
                 <div class="TitleAndCategory">
                     <h2><a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></h2> 

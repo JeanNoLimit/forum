@@ -6,7 +6,6 @@
     font-family: inter ;
 }
 
-
 a {
     text-decoration: none;
     color : black;
@@ -19,8 +18,11 @@ a:hover {
 /* Wrapper en position relative pour afficher le footer en bas de page */
 #wrapper {
     position: relative;
-    min-height: 100%;
-    padding-bottom:80px; 
+    min-height: 100vh;
+}
+
+#mainpage {
+    padding-bottom: 40px /*La taille du footer*/
 }
 
 /*****************HEADER AND NAV********************/
@@ -76,6 +78,39 @@ nav {
 .button a {
     color: white;
 }
+/* Contient les listes + les titres des listes */
+#generalContainer {
+    max-width: 1000px;
+    margin: auto;
+}
+
+ /* Contenaire des vues liste catégories et liste topics */
+
+.listContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 30px;
+    background-color: #DEE4F7;
+    border-bottom: solid 1px #AEAEAE;
+}
+
+/* Les titres bleus des contenaires catégories et topics */
+#title {
+    height: 50px;
+    background-color: #6E96E9;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px 5px 0px 0px;
+    display:flex;
+    align-items: center;
+}
+
+/* Boutton nouveau topic/Nouvelle catégorie */
+.newList {
+    margin-bottom : 30px;
+    margin-left : 30px;
+}
+
 
 /***************** FOOTER ********************/
 
@@ -127,19 +162,6 @@ footer{
 /***************** Liste topics ********************/
 
 
-#topicContainer {
-    max-width: 1000px;
-    margin: auto;
-}
-
-#title {
-    height: 50px;
-    background-color: #6E96E9;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px 5px 0px 0px;
-    display:flex;
-    align-items: center;
-}
 
 #title h1 {
     padding-left: 40px;
@@ -148,23 +170,13 @@ footer{
 }
 
 
-.listTopicContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 5px 30px;
-    background-color: #DEE4F7;
-    border-bottom: solid 1px #AEAEAE;
-
-}
-
 .TitleAndCategory{
     display: flex;
     flex-direction: row;
     align-items: baseline;
 }
 
-.listTopicContainer h2 {
+.listContainer h2 {
     font-weight: 500;
     font-size: 1.4em;
 }
@@ -179,10 +191,6 @@ footer{
     color: #6E96E9 ;
 }
 
-.newTopic {
-    margin-bottom : 30px;
-    margin-left : 30px;
-}
 
 
 

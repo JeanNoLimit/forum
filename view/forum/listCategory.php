@@ -2,11 +2,21 @@
 $categories = $result["data"]["categories"];
 
 ?>
+<div id="generalContainer">
 
-<h1>Liste des catégories</h1>
+    <div class="button newList">
+        <a href="">Nouvelle catégorie</a>
+    </div>
+    <div id="title">
+        <h1>Liste des catégories</h1>
+    </div>
 
-<?php foreach ($categories as $category){ ?>
+    <?php foreach ($categories as $category){ ?>
 
-    <p><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></p>
+        <div class="listContainer">
+            <p><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></p>
+    </div>
 
-<?php } ?>
+    <?php } ?>
+
+</div>
