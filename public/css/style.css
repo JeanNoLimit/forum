@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: inter ;
+}
+
+
+a {
+    text-decoration: none;
+    color : black;
+}
+
+a:hover {
+    color:rgb(54, 54, 54);
+}
+
+
+/*****************HEADER AND NAV********************/
+
+header {
+    background-color: #9FAFE9;
+    height: 90px;
+    min-width: 100vh;
+}
+
+nav {
+    display : flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    font-size: 1.3em;
+
+}
+
+
+
+#nav-right {
+    display : flex;
+    flex-direction: row-reverse;
+    padding-right: 10%;
+}
+
+#nav-left {
+    padding-left: 10%;
+}
+
+#nav-right a {
+    padding-left: 30px;
+   
+}
+
+/*********************CONTENU DE LA PAGE************************/
+
+#forum {
+    margin: 30px 10% auto;
+
+}
+
+/***************** FOOTER ********************/
+
+footer{
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    background-color: #9FAFE9;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  footer a{
+    text-decoration: underline;
+  }
+
+
+
+/***************** PAGE D'ACCUEIL ********************/
+
+#accueil {
+    
+    text-align: center;
+    width: 450px;
+    margin: auto;
+}
+
+#accueil h1 {
+    padding: 50px 0 20px 0;
+}
+
+#accueil p {
+    margin-top: 30px;
+}
+
+#accueil a {
+
+    color: #9FAFE9;
+    font-size: 1.3em;
+
+}
+
+#accueil a:hover {
+    color: #6E96E9;
+}
