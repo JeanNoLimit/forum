@@ -19,9 +19,11 @@ a:hover {
 #wrapper {
     position: relative;
     min-height: 100vh;
+
 }
 
 #mainpage {
+    
     padding-bottom: 40px /*La taille du footer*/
 }
 
@@ -65,7 +67,7 @@ nav {
 
 
 #forum {
-    margin: 30px 10% auto;
+    margin: 30px 10%;
 }
 
 .button {
@@ -192,7 +194,73 @@ footer{
 }
 
 
+/***********************Vue POST*****************************/
+
+#borderPost {
+    border: solid 3px #1A2138;
+    padding: 15px 5px;
+    border-top: solid 20px #1A2138;
+    border-radius: 10px;
+}
 
 
+#postTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #6E96E9;
+    height: 60px;
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+}
 
+#postTitle h1 {
+    padding-left: 30px;
+}
+
+#postTitle .creationDate {
+    padding-left: 50px;
+}
+
+.newPost {
+    margin: 20px 50px; 
+
+}
+
+.messageContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(159, 175, 233, 0.34);
+    margin-bottom: 5px;
+}
+
+.userInformations {
+    text-align: center;
+    background-color: rgba(100, 97, 97, 0.44);
+    min-width: 195px;
+    max-width: 195px;
+    padding: 10px 0;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.inscriptionDate {
+
+    font-size: 0.6em;
+    font-style: italic;
+}
+
+.messageContent {
+    padding-top: 5px;
+}
+
+.messageContent h3 {
+    font-weight: 500 ;
+    padding-bottom: 10px;
+}
+
+.content{
+    padding-right: 5px;
+    padding-bottom: 15px;
+}

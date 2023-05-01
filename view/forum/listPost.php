@@ -3,22 +3,36 @@ $posts = $result["data"]["posts"];
 $topic = $result["data"]["topic"];
 // Alternative possible en utilisant la fonction current()
 // $topicName = $posts->current()->getTopic()->getTitle();
-$topicName=$topic->getTitle();
-echo $topicName;
+// $topicName=$topic->getTitle();
+// echo $topicName;
 ?>
+<div id="borderPost">
+<div id="postTitle">
+    <h1><?=$topic->getTitle()?></h1>
+    <p class="creationDate">date de création : le <?=$topic->getCreationDate()->format("d-m-Y")?></p>
+</div>
 
-<h1>Liste des posts</h1>
-
-
+<div class="button newPost">
+        <a href="">Nouveau message</a>
+    </div>
 
 <?php
 foreach($posts as $post){ ?>
-    <p><?=$post->getUser()->getPseudo()?></p>
-    <p><?=$post->getUser()->getinscriptionDate()?></p>
 
-    <h3><?=$post->getTopic()->getTitle()?></h3>
-    <p><?=$post->getText()?></p>
-    <p><?=$post->getCreationDate()->format(" d m Y")?></p>
+    <div class="messageContainer">
+        <div class="userInformations">
+            <p><?=$post->getUser()->getPseudo()?></p>
+            <p class="inscriptionDate">date d'inscription : <br><?=$post->getUser()->getinscriptionDate()?></p>
+        </div>
+
+        <div class="messageContent">
+            <h3><?=$post->getTopic()->getTitle()?></h3>
+            <p class="content"><?=$post->getText()?></p>
+            <p class="creationDate">message crée le <?=$post->getCreationDate()->format("d m Y")?></p>
+        </div>
+    </div>
 
 <?php } ?>
+
+</div>
 
