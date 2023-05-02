@@ -183,10 +183,12 @@ footer{
     font-size: 1.4em;
 }
 
-.creationDate {
+.additionnalContent {
+    display: flex;
+    flex-direction: row;
     font-size: 0.6em;
     font-style: italic;
-    padding-left: 20px;
+    padding: 5px 20px;
 }
 
 .user {

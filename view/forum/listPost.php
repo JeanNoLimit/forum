@@ -30,7 +30,7 @@ foreach($posts as $post){ ?>
             <h3><?=$post->getTopic()->getTitle()?></h3>
             <p class="content"><?=$post->getText()?></p>
 
-            <div class="messageFooter">
+            <div class="additionnalContent">
                 <p>message crée le <?=$post->getCreationDate()->format("d-m-Y à h:i")?> - </p>
                 <p><a href="index.php?ctrl=forum&action=listPosts&id=<?=$post->getTopic()->getId()?>&deletePost&idPost=<?=$post->getId()?>"> Supprimer</a></p>
             </div>
