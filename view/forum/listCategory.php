@@ -5,7 +5,7 @@ $categories = $result["data"]["categories"];
 <div id="generalContainer">
 
     <div class="button newList">
-        <a href="">Nouvelle catégorie</a>
+        <a href="index.php?ctrl=forum&action=newCategory">Nouvelle catégorie</a>
     </div>
     <div id="title">
         <h1>Liste des catégories</h1>

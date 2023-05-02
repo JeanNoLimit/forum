@@ -27,7 +27,7 @@ $categories = $result["data"]["categories"];
             </select>
         </label>
     </div>
-
+                    <p>Si la catégorie n'est pas présente dans la liste, veuillez <a href="index.php?ctrl=forum&action=newCategory">cliquer ici </a></p>
     <div>
         <label for="message">Message 
             <textarea name="message" id="message" cols="80" rows="10"></textarea>

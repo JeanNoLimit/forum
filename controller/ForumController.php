@@ -116,6 +116,17 @@
 
         }
 
+        // Pour la gestion de la vue formulaire nouvelle catégorie
+        public function newCategory(){
+
+
+            return[
+                "view" => VIEW_DIR."forum/newCategory.php"
+            ];
+        }
+
+
+
         //Pour la gestion de la vue liste des topics d'une catégorie.
         public function listTopicsByCategory($id){
 
