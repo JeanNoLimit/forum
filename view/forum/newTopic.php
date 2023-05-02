@@ -10,7 +10,7 @@ $categories = $result["data"]["categories"];
 
 <div id="borderPost">
 
-   <form action="" method="post">
+   <form action="index.php?ctrl=forum&action=newTopic" method="post">
 
     <div>
         <label for="titleTopic"> Titre du sujet 
