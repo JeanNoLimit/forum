@@ -27,6 +27,21 @@
         
         }
 
+        //Affiche la page nouveau topic et gère la réception du formulaire
+        public function newTopic(){
+
+            
+            $categoryManager = new CategoryManager();
+
+            return [
+                "view" => VIEW_DIR."forum/newTopic.php",
+                "data" => [
+                    "categories" => $categoryManager->findAll(["categoryName","ASC"])
+                ]
+
+            ];
+        }
+    
 
         // Pour l'affichage de la vue des post d'un topic. 
         public function listPosts($id){

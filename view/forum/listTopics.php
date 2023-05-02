@@ -7,7 +7,7 @@ $topics = $result["data"]['topics'];
 <div id="generalContainer">
 
     <div class="button newList">
-        <a href="">Nouveau Sujet</a>
+        <a href="index.php?ctrl=forum&action=newTopic">Nouveau Sujet</a>
     </div>
 
     <div id="title">
