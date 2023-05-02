@@ -30,13 +30,27 @@
 
         // Pour l'affichage de la vue des post d'un topic. 
         public function listPosts($id){
-            $postManager = new PostManager();
-            if (isset($_POST['submit'])){
 
-                // ajout en BDD 
+             $topicManager = new TopicManager();
+             $postManager = new PostManager();
+
+            // Insertion d'un nouveau message
+            if (isset($_POST['messageSubmit'])){
+                
+                // On filtre le message
+                $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
+                //On créer le tableau de data qui sera utilisé par la fonction add du Manager.
+                //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
+                $data = ["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
+
+                if($message){
+                    
+                     $postManager->add($data) ;
+                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                     Session::addFlash("success", "message ajouté");
+                }
+               
             }
-
-            $topicManager = new TopicManager();
 
             return [
                 "view" => VIEW_DIR."forum/listPost.php",

@@ -41,12 +41,12 @@ foreach($posts as $post){ ?>
 </div>
 <div id="borderPost">
 
-    <form action="index.php?ctrl=forum&action=listPosts" method="post">
+    <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post">
         <div id="newMessage">
             <label for="message">message</label>
                 <textarea name="message" id="message" cols="80" rows="10"></textarea>
         </div>
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="Envoyer" name="messageSubmit">
     </form>
 
 </div>
