@@ -55,6 +55,9 @@
                     $postData=["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
                     //On ajoute les données à la table post
                     $postManager->add($postData);
+
+                     //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                     Session::addFlash("success", "Nouveau topic créé");
                 }
             }
 
@@ -118,6 +121,23 @@
 
         // Pour la gestion de la vue formulaire nouvelle catégorie
         public function newCategory(){
+
+            $categoryManager = new CategoryManager();
+
+            if(isset($_POST["submitNewCategory"])){
+
+                $categoryName=filter_input(INPUT_POST,"categoryName",  FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+                if($categoryName){
+                    $data=['categoryName' =>$categoryName];
+                    $categoryManager -> add($data);
+
+                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                    Session::addFlash("success", "Nouvelle catégorie ajoutée");
+
+                }
+            }
 
 
             return[

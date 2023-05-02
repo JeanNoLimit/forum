@@ -10,8 +10,8 @@
    <form action="index.php?ctrl=forum&action=newCategory" method="post">
 
         <div>
-            <label for="titleCategory"> Titre du sujet 
-                <input type="text" name="titleCategory" id="titleCategory">
+            <label for="categoryName"> Titre du sujet 
+                <input type="text" name="categoryName" id="categoryName">
             </label>
         </div>
 
