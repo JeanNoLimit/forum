@@ -22,7 +22,23 @@
           
             // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
            $topicManager = new TopicManager();
+           $postManager = new PostManager();
+
             // var_dump($topicManager);die;
+
+            //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
+            if(isset($_GET['deleteTopic'])){
+                $idTopic=$_GET['id'];
+                $posts= $postManager->findPostByTopic($idTopic);
+            
+                foreach ($posts as $post){
+                    $idPost=$post->getId();
+                    $postManager->delete($idPost);
+                }
+                $topicManager->delete($idTopic);
+            }
+
+
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
