@@ -9,7 +9,7 @@ $topic = $result["data"]["topic"];
                                         <!-- Affichage des posts -->
 <div id="postTitle">
     <h1><?=$topic->getTitle()?></h1>
-    <p class="creationDate">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
+    <p class="additionnalContent">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
 </div>
 <div id="borderPost">
 <div class="button newPost">

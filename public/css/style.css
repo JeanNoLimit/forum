@@ -59,7 +59,7 @@ nav {
 
 #nav-right a {
     padding-left: 30px;
-   
+    
 }
 
 /*********************CONTENU DE LA PAGE************************/
@@ -86,7 +86,7 @@ nav {
     margin: auto;
 }
 
- /* Contenaire des vues liste catégories et liste topics */
+/* Contenaire des vues liste catégories et liste topics */
 
 .listContainer {
     display: flex;
@@ -112,7 +112,14 @@ nav {
     margin-bottom : 30px;
     margin-left : 30px;
 }
-
+/* Contenu additionnel de diverses conteneurs -> contient la date de création + bouton supprimer */
+.additionnalContent {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.6em;
+    font-style: italic;
+    padding: 5px 20px;
+}
 
 /***************** FOOTER ********************/
 
@@ -125,7 +132,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
   footer a{
     text-decoration: underline;
@@ -183,13 +190,6 @@ footer{
     font-size: 1.4em;
 }
 
-.additionnalContent {
-    display: flex;
-    flex-direction: row;
-    font-size: 0.6em;
-    font-style: italic;
-    padding: 5px 20px;
-}
 
 .user {
     color: #6E96E9 ;
