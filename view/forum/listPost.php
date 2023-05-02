@@ -9,7 +9,7 @@ $topic = $result["data"]["topic"];
                                         <!-- Affichage des posts -->
 <div id="postTitle">
     <h1><?=$topic->getTitle()?></h1>
-    <p class="creationDate">date de création : le <?=$topic->getCreationDate()->format("d-m-Y")?></p>
+    <p class="creationDate">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
 </div>
 <div id="borderPost">
 <div class="button newPost">
@@ -22,13 +22,13 @@ foreach($posts as $post){ ?>
     <div class="messageContainer">
         <div class="userInformations">
             <p><?=$post->getUser()->getPseudo()?></p>
-            <p class="inscriptionDate">date d'inscription : <br><?=$post->getUser()->getinscriptionDate()?></p>
+            <p class="inscriptionDate">date d'inscription : <br><?=$post->getUser()->getinscriptionDate()->format("d-m-Y")?></p>
         </div>
 
         <div class="messageContent">
             <h3><?=$post->getTopic()->getTitle()?></h3>
             <p class="content"><?=$post->getText()?></p>
-            <p class="creationDate">message crée le <?=$post->getCreationDate()->format("d m Y")?></p>
+            <p class="creationDate">message crée le <?=$post->getCreationDate()->format("d-m-Y à h:i")?></p>
         </div>
     </div>
 

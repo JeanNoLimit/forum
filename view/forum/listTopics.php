@@ -24,7 +24,7 @@ $topics = $result["data"]['topics'];
                     <h2><a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></h2> 
                     <p>&nbsp- <?=$topic->getCategory()->getCategoryName() ?></p>
                 </div>
-                <p class="creationDate">date de création : <?=$topic->getCreationDate()->format("d-m-Y")?></p>
+                <p class="creationDate">date de création : <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
             </div>
             <div class="rightTopicContainer">
                 <p>par <span class="user"><?=$topic->getUser()->getPseudo()?></span></p>

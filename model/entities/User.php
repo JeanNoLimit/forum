@@ -9,7 +9,7 @@
         private int $id;
         private string $pseudo;
         private string $password;
-        private string $inscriptionDate;
+        private \DateTime $inscriptionDate;
         private string $role;
 
         public function __construct($data){
@@ -95,7 +95,7 @@
          */ 
         public function setinscriptionDate($inscriptionDate)
         {
-                $this->inscriptionDate = $inscriptionDate;
+                $this->inscriptionDate = new \DateTime ($inscriptionDate);
 
                 return $this;
         }
