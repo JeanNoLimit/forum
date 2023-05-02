@@ -16,7 +16,8 @@
 
 
          /************************************************* VUE list TOPICS ***********************************************************/
-        //affichage de la page index -> affichera la liste des topics triés par date de création décroissante
+       
+         //affichage de la page index -> affichera la liste des topics triés par date de création décroissante
         public function index(){
           
             // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
@@ -31,7 +32,9 @@
         
         }
 
+        
         /**************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
+       
         //Affiche la page nouveau topic et gère la réception du formulaire
         public function newTopic(){
 
@@ -77,15 +80,14 @@
     
         /******************************************************Méthodes de gestions des posts********************************************************/
 
-
-
-        /**************************************** VUE Affichage des posts + formulaire Nouveau post ***********************************************************/
+       
+        /**************************************** VUE Affichage des posts + formulaire Nouveau post + suppression d'un message ***********************************************************/
         // Pour l'affichage de la vue des post d'un topic. 
         public function listPosts($id){
 
              $topicManager = new TopicManager();
              $postManager = new PostManager();
-
+            
             // Insertion d'un nouveau message
             if (isset($_POST['messageSubmit'])){
                 
@@ -104,6 +106,12 @@
                
             }
 
+            // Suppresion d'un message!
+            if (isset($_GET['deletePost'])){
+                $idPost=$_GET['idPost'];
+                $postManager->delete($idPost);
+            }
+
             return [
                 "view" => VIEW_DIR."forum/listPost.php",
                 "data" => [
@@ -112,6 +120,7 @@
                 ]
             ];
         }
+
 
          /******************************************************Méthodes de gestions des catégories********************************************************/
 
@@ -164,7 +173,7 @@
 
 
         /**************************************** VUE Affichage des topics d'une catégorie***********************************************************/
-        
+
         //Pour la gestion de la vue liste des topics d'une catégorie.
         public function listTopicsByCategory($id){
 
