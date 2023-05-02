@@ -11,7 +11,11 @@
     
     class ForumController extends AbstractController implements ControllerInterface{
 
+         /********************************* Méthodes de gestions des Topics ********************************************************/
 
+
+
+         /************************************************* VUE list TOPICS ***********************************************************/
         //affichage de la page index -> affichera la liste des topics triés par date de création décroissante
         public function index(){
           
@@ -27,6 +31,7 @@
         
         }
 
+        /**************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
         //Affiche la page nouveau topic et gère la réception du formulaire
         public function newTopic(){
 
@@ -70,7 +75,11 @@
             ];
         }
     
+        /******************************************************Méthodes de gestions des posts********************************************************/
 
+
+
+        /**************************************** VUE Affichage des posts + formulaire Nouveau post ***********************************************************/
         // Pour l'affichage de la vue des post d'un topic. 
         public function listPosts($id){
 
@@ -104,6 +113,12 @@
             ];
         }
 
+         /******************************************************Méthodes de gestions des catégories********************************************************/
+
+
+
+        /**************************************** VUE Affichage liste catégories ***********************************************************/
+
         //Pour gestion de la vue de la liste des catégories
         public function listCategory(){
 
@@ -118,6 +133,8 @@
             ];
 
         }
+
+        /**************************************** VUE formulaire nouvelle catégorie***********************************************************/
 
         // Pour la gestion de la vue formulaire nouvelle catégorie
         public function newCategory(){
@@ -146,7 +163,8 @@
         }
 
 
-
+        /**************************************** VUE Affichage des topics d'une catégorie***********************************************************/
+        
         //Pour la gestion de la vue liste des topics d'une catégorie.
         public function listTopicsByCategory($id){
 
