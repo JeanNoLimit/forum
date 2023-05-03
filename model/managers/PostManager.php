@@ -28,6 +28,20 @@ class PostManager extends Manager {
                 $this->className
             );  
         }
+
+        // Requête pour trouver le post le plus vieux d'un topic
+        public function findFirstPost($id) {
+
+            $sql = "SELECT id_post
+                    FROM post p
+                    WHERE p.topic_id= :id AND p.creationDate<=ALL(
+                        SELECT p.creationDate
+                        FROM post p
+                        WHERE topic_id= :id)";
+            return $this->getSingleScalarResult(DAO::select($sql, ['id' => $id]));
+
+
+        }
         
 }
 
