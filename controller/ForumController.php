@@ -110,27 +110,31 @@
                 // On filtre le message
                 $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
                 //On créer le tableau de data qui sera utilisé par la fonction add du Manager.
+
                 //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
                 $data = ["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
-
+            
+                
                 if($message){
                     
                      $postManager->add($data) ;
-                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                     //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
                      Session::addFlash("success", "message ajouté");
                 }
-               
+                
             }
 
             
             // Suppresion d'un message!
             if (isset($_GET['deletePost'])){
+                // On récupère l'id du post à supprimer
                 $idPost=$_GET['idPost'];
-                // On récupère la date de la création du topic et la date du post.
-                $dateTopic=$topicManager->findONeById($id)->getCreationDate();
-                $datePost=$postManager->findOneById($idPost)->getCreationDate();
-                //Si les 2 dates correspondent on peut pourra pas supprimer le message
-                if($dateTopic==$datePost){
+
+                // On récupère l'identifiant du premier topic
+                $firstPost=$postManager->findFirstPost($id);
+                // var_dump($idPost, $firstPost["id_post"]);die;
+
+                if($idPost==$firstPost["id_post"]){
                     Session::addFlash("error", "impossible de supprimer le message!");
                 }else{
                        $postManager->delete($idPost);
@@ -141,7 +145,7 @@
                     
                  
                 
-            }
+             }
 
             return [
                 "view" => VIEW_DIR."forum/listPost.php",
