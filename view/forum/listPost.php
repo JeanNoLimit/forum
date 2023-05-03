@@ -40,18 +40,32 @@ foreach($posts as $post){ ?>
 <?php } ?>
 </div>
                                         <!-- Formulaire de saisie d'un nouveau post -->
+<?php if($topic->getClosed()){ ?>
 
-<div id="postTitle">
-    <h3>Nouveau message</h3>
-</div>
-<div id="borderPost">
+    <div id="postTitle">
+        <h3>Nouveau message</h3>
+    </div>
+    <div id="borderPost">
 
-    <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post">
-        <div id="newMessage">
-            <label for="message">message</label>
-                <textarea name="message" id="message" cols="80" rows="10"></textarea>
-        </div>
-        <input type="submit" value="Envoyer" name="messageSubmit">
-    </form>
+    <p> Le topic est fermé!</p>
 
-</div>
+    </div>
+
+<?php } else { ?>
+
+    <div id="postTitle">
+        <h3>Nouveau message</h3>
+    </div>
+    <div id="borderPost">
+
+        <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post">
+            <div id="newMessage">
+                <label for="message">message</label>
+                    <textarea name="message" id="message" cols="80" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Envoyer" name="messageSubmit">
+        </form>
+
+    </div>
+    
+<?php } ?>
