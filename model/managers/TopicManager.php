@@ -21,7 +21,8 @@
 
             $sql = "SELECT *
                     FROM ".$this->tableName." p
-                    WHERE p.category_id= :id";
+                    WHERE p.category_id= :id
+                    ORDER BY creationDate DESC";
             return $this->getMultipleResults(
                 DAO::select($sql, ['id'=> $id]),
                 $this->className
