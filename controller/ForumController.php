@@ -42,7 +42,7 @@
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "topics" => $topicManager->findAll(["creationDate", "DESC"])
+                    "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
                 ]
             ];
         
@@ -76,7 +76,7 @@
                     // Et On récupère le dernier identifiant créer pour connaître l'id du topic
                     $id=$topicManager->add($topicData);
                     //Création du tableau $postData pour créer le premier post du nouveau sujet
-                    $postData=["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
+                    $postData=["user_id"=> 1, "topic_id"=> $id, "text"=> $message]; 
                     //On ajoute les données à la table post
                     $postManager->add($postData);
 
@@ -124,8 +124,12 @@
 
             // Suppresion d'un message!
             if (isset($_GET['deletePost'])){
-                $idPost=$_GET['idPost'];
-                $postManager->delete($idPost);
+
+                    $idPost=$_GET['idPost'];
+                    $postManager->delete($idPost);
+                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                    Session::addFlash("success", "message supprimé");
+                
             }
 
             return [
