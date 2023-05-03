@@ -11,6 +11,7 @@
         private bool $closed;
         private User $user;
         private Category $category;
+        private int $nbPosts;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -134,6 +135,26 @@
         public function setCategory($category)
         {
                 $this->category = $category;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of nbPosts
+         */ 
+        public function getNbPosts()
+        {
+                return $this->nbPosts;
+        }
+
+        /**
+         * Set the value of nbPosts
+         *
+         * @return  self
+         */ 
+        public function setNbPosts($nbPosts)
+        {
+                $this->nbPosts = $nbPosts;
 
                 return $this;
         }
