@@ -7,9 +7,14 @@ $topic = $result["data"]["topic"];
 // echo $topicName;
 ?>
                                         <!-- Affichage des posts -->
-<div id="postTitle">
-    <h1><?=$topic->getTitle()?></h1>
-    <p class="additionnalContent">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
+<div id="title">
+    <div id="LeftTitle">
+        <h1><?=$topic->getTitle()?></h1>
+        <p class="additionnalContent">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
+    </div id="rightTitle">
+    <div class="button closedButton">
+        <a href="index.php?ctrl=forum&action=closeTopic&id=<?=$topic->getId()?>">Vérouiller Topic</a>
+    </div>
 </div>
 <div id="borderPost">
 <div class="button newPost">
@@ -67,5 +72,5 @@ foreach($posts as $post){ ?>
         </form>
 
     </div>
-    
+
 <?php } ?>
