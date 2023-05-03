@@ -49,7 +49,7 @@
         }
 
         
-        /**************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
+        /*********************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
        
         //Affiche la page nouveau topic et gère la réception du formulaire
         public function newTopic(){
@@ -93,6 +93,18 @@
 
             ];
         }
+
+        //**********************************************Vérouillage/dévérouillage d'un topic ******************************************//
+
+        public function switchLock($id){
+
+            $topicManager = new TopicManager();
+
+
+
+            $this->redirectTo("forum","listTopics");
+        }
+                    
     
         /******************************************************Méthodes de gestions des posts********************************************************/
 
@@ -103,8 +115,9 @@
 
              $topicManager = new TopicManager();
              $postManager = new PostManager();
+             $closed=$topicManager->findOneById($id)->getClosed();
             
-            // Insertion d'un nouveau message
+            //************ Insertion d'un nouveau message*************//
             if (isset($_POST['messageSubmit'])){
                 
                 // On filtre le message
@@ -113,9 +126,7 @@
                 //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
                 $data = ["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
                 //On récupère la condition "closed" de topic pour vérifier si le topic est bloqué ou non
-                $closed=$topicManager->findOneById($id)->getClosed();
-
-            
+                //On vérifie que le topic n'est pas fermé.
                 if($closed==false){
                     if($message){
                          $postManager->add($data) ;
@@ -129,7 +140,7 @@
             }
 
             
-            // Suppresion d'un message!
+            //*********************** Suppresion d'un message! *********************//
             if (isset($_GET['deletePost'])){
                 // On récupère l'id du post à supprimer
                 $idPost=$_GET['idPost'];
@@ -144,11 +155,9 @@
                    
                         Session::addFlash("success", "message supprimé");
                 }
-
-                    
-                 
-                
-             }
+            
+            }
+            
 
             return [
                 "view" => VIEW_DIR."forum/listPost.php",
