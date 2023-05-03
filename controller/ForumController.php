@@ -122,13 +122,24 @@
                
             }
 
+            
             // Suppresion d'un message!
             if (isset($_GET['deletePost'])){
-
-                    $idPost=$_GET['idPost'];
-                    $postManager->delete($idPost);
+                $idPost=$_GET['idPost'];
+                // On récupère la date de la création du topic et la date du post.
+                $dateTopic=$topicManager->findONeById($id)->getCreationDate();
+                $datePost=$postManager->findOneById($idPost)->getCreationDate();
+                //Si les 2 dates correspondent on peut pourra pas supprimer le message
+                if($dateTopic==$datePost){
+                    Session::addFlash("error", "impossible de supprimer le message!");
+                }else{
+                       $postManager->delete($idPost);
                     //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                    Session::addFlash("success", "message supprimé");
+                        Session::addFlash("success", "message supprimé");
+                }
+
+                    
+                 
                 
             }
 
