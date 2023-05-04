@@ -13,7 +13,7 @@ $topic = $result["data"]["topic"];
         <p class="additionnalContent">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
     </div id="rightTitle">
     <div class="button closedButton">
-        <a href="index.php?ctrl=forum&action=closeTopic&id=<?=$topic->getId()?>">Vérouiller Topic</a>
+        <a href="index.php?ctrl=forum&action=switchLock&id=<?=$topic->getId()?>">Vérouiller Topic</a>
     </div>
 </div>
 <div id="borderPost">
@@ -47,7 +47,7 @@ foreach($posts as $post){ ?>
                                         <!-- Formulaire de saisie d'un nouveau post -->
 <?php if($topic->getClosed()){ ?>
 
-    <div id="postTitle">
+    <div id="title">
         <h3>Nouveau message</h3>
     </div>
     <div id="borderPost">
@@ -58,7 +58,7 @@ foreach($posts as $post){ ?>
 
 <?php } else { ?>
 
-    <div id="postTitle">
+    <div id="title">
         <h3>Nouveau message</h3>
     </div>
     <div id="borderPost">
