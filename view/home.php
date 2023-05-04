@@ -6,9 +6,9 @@
     <p>Pour accéder au contenu du forum veuillez vous connecter ou vous inscrire </p>
 
     <p>
-        <a href="/security/login.html">Se connecter</a>
+        <a href="index.php?ctrl=security&action=signin">Se connecter</a>
         <span>&nbsp;-&nbsp;</span>
-        <a href="/security/register.html">S'inscrire</a>
+        <a href="index.php?ctrl=security&action=signup">S'inscrire</a>
     </p>
 
 </div>
