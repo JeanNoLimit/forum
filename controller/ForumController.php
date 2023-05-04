@@ -99,9 +99,27 @@
         public function switchLock($id){
 
             $topicManager = new TopicManager();
+            
+            $statut=$topicManager->findOneById($id)->getClosed();
+            // var_dump($statut);die;
 
+            switch ($statut) {
 
+                case false:
 
+                    $statut=1;
+                    $topicManager->changeStatut($id,$statut);
+                    Session::addFlash("success", "Le topic est fermé");
+                    break;
+
+                case true:
+                   
+                    $statut=0;
+                    $topicManager->changeStatut($id,$statut);
+                    // var_dump($statut);die;
+                    Session::addFlash("success", "Le topic est réouvert");
+                    break;
+            }
             $this->redirectTo("forum","listTopics");
         }
                     
