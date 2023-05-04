@@ -29,7 +29,7 @@
             );
         }
 
-        //Renplace la méthode findAll du manager pour ajouter un compteur nbPosts
+        //Remplace la méthode findAll du manager pour ajouter un compteur nbPosts
         public function findAllTopics($order){
             $orderQuery = ($order) ?                 
                 "ORDER BY ".$order[0]. " ".$order[1] :
@@ -45,6 +45,15 @@
                 DAO::select($sql), 
                 $this->className
             );
+        }
+
+        // Requête permettant la modification de la colonne closed d'un topic. (vérouillage topic)
+        public function changeStatut($id,$statut){
+            $sql="UPDATE ".$this->tableName."
+                  SET closed= :statut
+                  WHERE id_topic= :id";
+            return $this->getOneOrNullResult(DAO::update($sql, ['statut'=> $statut, 'id'=>$id]),
+            $this->className);
         }
 
     }
