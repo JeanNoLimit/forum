@@ -7,6 +7,7 @@
     final class User extends Entity {
 
         private int $id;
+        private string $email;
         private string $pseudo;
         private string $password;
         private \DateTime $inscriptionDate;
@@ -116,6 +117,26 @@
         public function setRole($role)
         {
                 $this->role = $role;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of email
+         */ 
+        public function getEmail()
+        {
+                return $this->email;
+        }
+
+        /**
+         * Set the value of email
+         *
+         * @return  self
+         */ 
+        public function setEmail($email)
+        {
+                $this->email = $email;
 
                 return $this;
         }
