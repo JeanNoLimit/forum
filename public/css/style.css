@@ -322,18 +322,29 @@ textarea {
 }
 
 
-/* Formulaire nouveau topic */
+/* Formulaire nouveau topic et catégorie */
 
-.formTopic {
+.formContainerCat{
+    max-width: 800px;
+    margin: auto;
+}
+
+.formContainerTopic{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.formTopicAndCat {
+
     display: flex;
     flex-direction: column;
 }
 
-.formTopic div{
+.formTopicAndCat div{
     padding: 10px 15px 0 15px;
 }
 
-.formTopic label {
+.formTopicAndCat label {
     font-weight: 500;
     
 }
