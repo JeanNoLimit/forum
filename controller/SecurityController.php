@@ -14,9 +14,15 @@ class SecurityController extends AbstractController implements ControllerInterfa
     
     public function signup(){
 
-
         return [
             "view" => VIEW_DIR."security/register.html"
+        ];
+    }
+
+    public function signin(){
+
+        return [
+            "view" => VIEW_DIR."security/login.html"
         ];
     }
 
@@ -37,13 +43,11 @@ class SecurityController extends AbstractController implements ControllerInterfa
             if($pseudo && $email && $password && $password2){
                 
                 //On vérifie l'existance du pseudo et de l'adresse mail dans la bdd
-                $pseudoBdd=$userManager->findPseudo($pseudo);
-                $emailBdd=$userManager->findEmail($email);
                 
-                if($emailBdd){
+                if($userManager->findEmail($email)){
                     Session::addFlash("error", "adresse mail déja utiliséé");
                     $this->redirectTo("security","signup");
-                }elseif($pseudoBdd){
+                }elseif($pseudoBdd=$userManager->findPseudo($pseudo)){
                     Session::addFlash("error", "Pseudo déja utilisé, veuillez entrer un pseudo valide");
                     $this->redirectTo("security","signup");
                     //rappel : strcmp -> comparaison binaire de chaînes. La comparaison est sensible à la casse.
@@ -71,10 +75,44 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
 
+    public function login() {
+
+        $userManager= new UserManager;
+    
+        if(isset($_POST['submitLogin'])){
+
+            $email=filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL );
+            $password=filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if($email && $password){
+
+                $user=$userManager->findEmail($email);
+                // var_dump($user);die;
+
+                if(!$user){
+                    Session::addFlash("error", "Veuillez rentrer une adresse valide");
+                    $this-> redirectTo("security","signin");
+                }elseif(password_verify($password, $user->getPassword())==false){
+                    Session::addFlash("error", "Mot de passe incorrect");
+                    $this-> redirectTo("security","signin");
+                }else{
+                    //var_dump($user->getRole());die;
+                    Session::setUser($user);
+                    
+                    $this->redirectTo("forum","index"); //Penser à rediriger vers home lorsque cela sera possible.
+                }
+            }  
+
+
+        }
+        
+    }
+
+
+
 
 
 
 
 }
-
 ?>

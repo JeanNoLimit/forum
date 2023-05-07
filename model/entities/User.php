@@ -109,6 +109,13 @@
                 return $this->role;
         }
 
+
+        public function hasRole($role){
+                if($this->getRole()==$role){
+                  return true;      
+                }
+                return false;     
+        }
         /**
          * Set the value of role
          *
@@ -140,4 +147,7 @@
 
                 return $this;
         }
+
+
+
     }
