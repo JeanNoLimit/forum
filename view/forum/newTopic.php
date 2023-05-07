@@ -4,11 +4,11 @@ $categories = $result["data"]["categories"];
 ?>
 
 
-<div id="title">
+<div class="title">
     <h1>Nouveau sujet</h1>
 </div>
 
-<div id="borderPost">
+<div id="borderContainer">
 
    <form action="index.php?ctrl=forum&action=newTopic" method="post">
 

@@ -1,11 +1,11 @@
 
 
-<div id="title">
+<div class="title">
     <h1>Nouvelle catégorie</h1>
 </div>
 
 
-<div id="borderPost">
+<div id="borderContainer">
 
    <form action="index.php?ctrl=forum&action=newCategory" method="post">
 

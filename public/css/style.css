@@ -31,8 +31,8 @@ a:hover {
 
 header {
     background-color: #9FAFE9;
-    height: 90px;
-    min-width: 100vh;
+    height: 60px;
+    min-width: 100%;
 }
 
 nav {
@@ -40,17 +40,16 @@ nav {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
-    font-size: 1.3em;
+    height: 60px;
+    font-size: 1.2em;
 
 }
-
-
 
 #nav-right {
     display : flex;
     flex-direction: row-reverse;
-    padding-right: 10%;
+    align-items: center;
+    margin-right: 10%;
 }
 
 #nav-left {
@@ -58,18 +57,17 @@ nav {
 }
 
 #nav-right a {
-    padding-left: 30px;
+    padding: 0 10px;
+    text-align: center;
     
 }
 
 /*********************CONTENU DE LA PAGE************************/
 
-
-
 #forum {
     margin: 30px 10%;
 }
-
+/**********************Gestion des boutons*********************/
 .button {
     background-color: #1A2138;
     padding: 10px 30px;
@@ -80,25 +78,23 @@ nav {
 .button a {
     color: white;
 }
+
+/* Boutton nouveau topic/Nouvelle catégorie */
+.newList {
+    margin-bottom : 30px;
+    margin-left : 30px;
+}
+
+/***********************Gestion de l'affichage des contens (présent sur toutes les pages)**********************************/
+
 /* Contient les listes + les titres des listes */
 #generalContainer {
     max-width: 1000px;
     margin: auto;
 }
 
-/* Contenaire des vues liste catégories et liste topics */
-
-.listContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 5px 30px;
-    background-color: #DEE4F7;
-    border-bottom: solid 1px #AEAEAE;
-}
-
-/* Les titres bleus des contenaires catégories et topics */
-#title {
+/* Les titres bleus des contenaires, on les retrouve sur toutes les pages */
+.title {
     height: 50px;
     background-color: #6E96E9;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -107,24 +103,56 @@ nav {
     align-items: center;
 }
 
-/* Boutton nouveau topic/Nouvelle catégorie */
-.newList {
-    margin-bottom : 30px;
-    margin-left : 30px;
+.title h1 {
+    padding-left: 40px;
+    font-weight: 500;
+    font-size: 1.3em;
 }
-/* Contenu additionnel de diverses conteneurs -> contient la date de création + bouton supprimer */
+
+/************************* Les conteneurs de listes **************/
+
+
+/* Contenaire des vues liste catégories et liste topics, topics par catégories */
+.listContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 30px;
+    background-color: #DEE4F7;
+    border-bottom: solid 1px #AEAEAE;
+    min-height: 30px;
+}
+
+.listContainer h2 {
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
+
+/* Contenu additionnel des conteneurs -> contient la date de création + bouton supprimer */
 .additionnalContent {
     display: flex;
     flex-direction: row;
     font-size: 0.6em;
     font-style: italic;
-    padding: 5px 20px;
+    padding: 5px;
+}
+
+/*************************Conteneurs bleu (vue posts et formulaires)*****************/
+
+#borderContainer {
+    border-left: solid 3px #6E96E9;
+    border-right:solid 3px #6E96E9;
+    border-bottom: solid 3px #6E96E9;;
+    padding: 0 5px 15px 5px;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 15px;
 }
 
 /***************** FOOTER ********************/
 
 footer{
-    height: 40px;
+    height: 30px;
     position: absolute;
     bottom: 0;
     background-color: #9FAFE9;
@@ -168,28 +196,16 @@ footer{
     color: #6E96E9;
 }
 
+
+/*******************Spécifique à chaque vue **********************/
+
 /***************** Liste topics ********************/
-
-
-
-#title h1 {
-    padding-left: 40px;
-    font-weight: 500;
-    font-size: 1.3em;
-}
-
 
 .TitleAndCategory{
     display: flex;
     flex-direction: row;
     align-items: baseline;
 }
-
-.listContainer h2 {
-    font-weight: 500;
-    font-size: 1.4em;
-}
-
 
 .user {
     color: #6E96E9 ;
@@ -198,32 +214,40 @@ footer{
 
 /***********************Vue POST*****************************/
 
-#borderPost {
-    border-left: solid 3px #6E96E9;
-    border-right:solid 3px #6E96E9;
-    border-bottom: solid 3px #6E96E9;;
-    padding: 0 5px 15px 5px;
-    border-radius: 0 0 5px 5px;
-    margin-bottom: 15px;
+#postContainer{
+    max-width: 1200px;
+    margin: auto;
+}
+.postTitle {
+    justify-content: space-between;
 }
 
+.LeftTitle p {
+    padding-left: 40px;
 
-#postTitle{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 
-#postTitle h1 {
-    padding-left: 30px;
+.closedButton {
+    
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 40px;
+    padding: 5px 10px;
 }
 
-#postTitle .creationDate {
-    padding-left: 50px;
+.redButton {
+    background-color: rgba(241, 55, 55, 0.7);
 }
 
+.greenButton {
+    background-color: rgba(0, 128, 0, 0.712);
+}
+
+.closedButton a{
+    color: white;
+}
 .newPost {
-    margin: 20px 50px; 
+    margin: 20px 35px; 
 
 }
 

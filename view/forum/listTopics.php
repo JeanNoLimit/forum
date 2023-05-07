@@ -10,7 +10,7 @@ $topics = $result["data"]['topics'];
         <a href="index.php?ctrl=forum&action=newTopic">Nouveau Sujet</a>
     </div>
 
-    <div id="title">
+    <div class="title">
         <h1>liste des topics</h1>
     </div>
 
@@ -21,7 +21,7 @@ $topics = $result["data"]['topics'];
     
             ?>
             <div class="listContainer">
-                <div class="leftTopicContainer">
+                <div class="leftListContainer">
                     <div class="TitleAndCategory">
                         <h2><a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></h2> 
                         <p>&nbsp- <?=$topic->getCategory()->getCategoryName() ?></p>
@@ -29,10 +29,10 @@ $topics = $result["data"]['topics'];
                     </div>
                     <div class="additionnalContent">
                         <p >date de création : le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?> - </p>
-                        <p><a href="index.php?ctrl=forum&action=index&deleteTopic&id=<?=$topic->getId()?>">Supprimer</a></p>
+                        <p><a href="index.php?ctrl=forum&action=index&deleteTopic&id=<?=$topic->getId()?>">Supprimer </a></p>
                     </div>
                 </div>
-                <div class="rightTopicContainer">
+                <div class="rightListContainer">
                     <p>par <span class="user"><?=$topic->getUser()->getPseudo()?></span></p>
                     <p>Nombre de posts : <?=$topic->getNbPosts() ?></p>
                 </div>

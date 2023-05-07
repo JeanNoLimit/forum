@@ -4,7 +4,7 @@
 ?>
 
 <div id="generalContainer">
-    <div id="title">
+    <div class="title">
         <h1>Liste des sujets de la catégorie <?=$categorie->getCategoryName()?> </h1>
     </div>
 
@@ -16,7 +16,7 @@
 
             ?>
             <div class="listContainer">
-                <div class="leftTopicContainer">
+                <div class="leftListContainer">
                     <div class="TitleAndCategory">
                         <h2> <a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></h2>
                     </div> 
@@ -25,8 +25,9 @@
                         <p><a href="index.php?ctrl=forum&action=index&deleteTopic&id=<?=$topic->getId()?>">Supprimer</a></p>
                     </div>
                 </div>
-                <div class="rightTopicContainer">
+                <div class="rightListContainer">
                 <p>par <span class="user"><?=$topic->getUser()->getPseudo()?></span></p>
+                <p>Nombre de posts : <?=$topic->getNbPosts() ?></p>
                 </div>
         </div>
 
