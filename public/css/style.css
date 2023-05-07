@@ -291,15 +291,7 @@ footer{
     padding-bottom: 15px;
 }
 
-/* Formulaire nouveau post */
-
-.formPost{
-    display: flex;
-    flex-direction: column;
-    padding: 15px 15px 0 15px;
-    align-content: center;
-    
-}
+/********************* FORMULAIRES ********************/
 
 textarea {
 
@@ -318,4 +310,53 @@ textarea {
     background-color: #1A2138;
     margin: 15px auto 0 auto;
 }
+
+
+/* Formulaire nouveau post */
+
+.formPost{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px 0 15px;
+    
+}
+
+
+/* Formulaire nouveau topic */
+
+.formTopic {
+    display: flex;
+    flex-direction: column;
+}
+
+.formTopic div{
+    padding: 10px 15px 0 15px;
+}
+
+.formTopic label {
+    font-weight: 500;
+    
+}
+
+.newCatLink{
+    font-style: italic;
+    color: #AEAEAE;
+    font-size: 0.8em;
+    padding-top: 5px;
+}
+
+.TopicTextArea{
+    margin-top: 5px;
+}
+
+.inputField {
+    height: 22px;
+    font-size: 1em;
+}
+
+.newTitle{
+    min-width: 100%;
+    margin-top: 5px;
+}
+
 
