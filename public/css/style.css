@@ -227,6 +227,7 @@ footer{
 
 }
 
+/* bouton vérouillage topic */
 .closedButton {
     
     border-radius: 5px;
@@ -235,17 +236,19 @@ footer{
     padding: 5px 10px;
 }
 
+.closedButton a{
+    color: white;
+}
 .redButton {
     background-color: rgba(241, 55, 55, 0.7);
 }
 
 .greenButton {
-    background-color: rgba(0, 128, 0, 0.712);
+    background-color: rgba(0, 128, 0, 0.7);
 }
 
-.closedButton a{
-    color: white;
-}
+
+/* Section qui contient la liste des messages */
 .newPost {
     margin: 20px 35px; 
 
@@ -288,10 +291,31 @@ footer{
     padding-bottom: 15px;
 }
 
-#newMessage{
+/* Formulaire nouveau post */
+
+.formPost{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 20px 0;
+    flex-direction: column;
+    padding: 15px 15px 0 15px;
+    align-content: center;
+    
 }
+
+textarea {
+
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    max-height: 350px;
+}
+
+.submitButton {
+    color: white;
+    width: 100px;
+    font-size: 1em;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #1A2138;
+    margin: 15px auto 0 auto;
+}
+

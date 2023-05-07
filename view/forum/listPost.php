@@ -26,7 +26,7 @@ $topic = $result["data"]["topic"];
     </div>
     <div id="borderContainer">
     <div class="button newPost">
-            <a href="#newMessage">Nouveau message</a>
+            <a href="#newMessage">répondre <i class="fa-solid fa-reply"></i> </a>
         </div>
     <?php
     foreach($posts as $post){ ?>
@@ -54,7 +54,7 @@ $topic = $result["data"]["topic"];
                                             <!-- Formulaire de saisie d'un nouveau post -->
     <?php if($topic->getClosed()){ ?>
 
-        <div class="title">
+        <div class="title formTitle">
             <h3>Nouveau message</h3>
         </div>
         <div id="borderContainer">
@@ -65,17 +65,15 @@ $topic = $result["data"]["topic"];
 </div>
     <?php } else { ?>
 
-        <div class="title">
-            <h3>Nouveau message</h3>
+        <div class="title formTitle">
+            <h1>Nouveau message</h1>
         </div>
         <div id="borderContainer">
-
-            <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post">
-                <div id="newMessage">
-                    <label for="message">message</label>
-                        <textarea name="message" id="message" cols="80" rows="10"></textarea>
-                </div>
-                <input type="submit" value="Envoyer" name="messageSubmit">
+            <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post" class="formPost">
+                    <!-- <label for="message"></label> -->
+                        <textarea name="message" id="message"></textarea>
+                
+                <input type="submit" value="Envoyer" name="messageSubmit" class=submitButton>
             </form>
 
         </div>
