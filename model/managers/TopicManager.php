@@ -19,7 +19,9 @@
         //Requête pour afficher les topics d'une catégorie
         public function findTopicsByCategory($id){
 
-            $sql = "SELECT *
+            $sql = "SELECT *, (SELECT COUNT(*)
+                    FROM post p
+                    WHERE id_topic=p.topic_id) as nbPosts
                     FROM ".$this->tableName." p
                     WHERE p.category_id= :id
                     ORDER BY creationDate DESC";
