@@ -65,8 +65,8 @@ $topic = $result["data"]["topic"];
 </div>
     <?php } else { ?>
 
-        <div class="title formTitle">
-            <h1>Nouveau message</h1>
+        <div class="title formTitle" >
+            <h1 id="newMessage">Nouveau message</h1>
         </div>
         <div id="borderContainer">
             <form action="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>" method="post" class="formPost">
