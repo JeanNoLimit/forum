@@ -9,17 +9,17 @@
     <form action="index.php?ctrl=security&action=register" method="post" class="RALform">
 
         
-            <label for="pseudo"> pseudo </label>
-                <input type="text" name="pseudo" id="pseudo" class="inputField">
+            <label for="pseudo"> pseudo <span class="information">(entre 4 et 20 caractères)</span> </label>
+                <input type="text" name="pseudo" id="pseudo" class="inputField" minlength="4" maxlength="20">
             
             <label for="email"> adresse e-mail </label>
-                <input type="text" name="email" id="email" class="inputField">
+                <input type="text" name="email" id="email" class="inputField" minlength="10" maxlength="50">
             
-            <label for="password"> mot de passe </label> 
-                <input type="password" name="password" id="password" class="inputField">
+            <label for="password"> mot de passe <span class="information">(entre 4 et 16 caractères)</span></label> 
+                <input type="password" name="password" id="password" class="inputField" minlength="4" maxlength="16">
             
             <label for="checkPassword"> confirmation du mot de passe </label>
-                <input type="password" name="checkPassword" id="checkPassword" class="inputField">    
+                <input type="password" name="checkPassword" id="checkPassword" class="inputField" minlength="4" maxlength="16">    
 
             <input type="submit" value="Envoyer" name="submitRegistration" class="submitButton">
 
