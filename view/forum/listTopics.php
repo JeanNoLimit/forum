@@ -11,7 +11,7 @@ $topics = $result["data"]['topics'];
     </div>
 
     <div class="title">
-        <h1>liste des topics</h1>
+        <h1>liste des sujets</h1>
     </div>
 
     <?php
