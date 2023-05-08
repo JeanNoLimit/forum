@@ -75,6 +75,10 @@ nav {
     display: inline-block;
 }
 
+.button:hover {
+    background-color: #1a21389c;
+}
+
 .button a {
     color: white;
 }
@@ -239,14 +243,22 @@ footer{
 .closedButton a{
     color: white;
 }
+
 .redButton {
     background-color: rgba(241, 55, 55, 0.7);
+}
+
+.redButton:hover {
+    background-color: rgba(241, 55, 55, 0.4);
 }
 
 .greenButton {
     background-color: rgba(0, 128, 0, 0.7);
 }
 
+.greenButton:hover {
+    background-color: rgba(0, 128, 0, 0.4);
+}
 
 /* Section qui contient la liste des messages */
 .newPost {
