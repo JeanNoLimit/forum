@@ -4,6 +4,12 @@
 ?>
 
 <div id="generalContainer">
+
+    <div class="button newList">
+        <a href="index.php?ctrl=forum&action=newTopic">Nouveau Sujet</a>
+    </div>
+
+
     <div class="title">
         <h1>Liste des sujets de la catégorie <?=$categorie->getCategoryName()?> </h1>
     </div>
