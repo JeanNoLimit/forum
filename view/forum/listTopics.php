@@ -29,7 +29,7 @@ $topics = $result["data"]['topics'];
                     </div>
                     <div class="additionnalContent">
                         <p >date de création : le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?> - </p>
-                        <p><a href="index.php?ctrl=forum&action=index&deleteTopic&id=<?=$topic->getId()?>">Supprimer </a></p>
+                        <p><a href="index.php?ctrl=forum&action=deleteTopic&id=<?=$topic->getId()?>">Supprimer </a></p>
                     </div>
                 </div>
                 <div class="rightListContainer">

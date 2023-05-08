@@ -24,19 +24,6 @@
            $topicManager = new TopicManager();
            $postManager = new PostManager();
 
-            // var_dump($topicManager);die;
-
-            //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
-            if(isset($_GET['deleteTopic'])){
-                $idTopic=$_GET['id'];
-                $posts= $postManager->findPostByTopic($idTopic);
-            
-                foreach ($posts as $post){
-                    $idPost=$post->getId();
-                    $postManager->delete($idPost);
-                }
-                $topicManager->delete($idTopic);
-            }
 
 
             return [
@@ -49,7 +36,33 @@
         }
         
 
+        /*************************************************************Suppression d'un TOPIC****************************************************/ 
+
+        public function deleteTopic($id){
+            
+            $topicManager = new TopicManager();
+            $postManager = new PostManager();
+
+            //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
+            
+            $posts= $postManager->findPostByTopic($id);
         
+            foreach ($posts as $post){
+                $idPost=$post->getId();
+                $postManager->delete($idPost);
+            }
+            $topicManager->delete($id);
+            
+
+            return [
+                "view" => VIEW_DIR."forum/listTopics.php",
+                "data" => [
+                    "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
+                ]
+            ];
+
+
+        }
         /*********************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
        
         //Affiche la page nouveau topic et gère la réception du formulaire
