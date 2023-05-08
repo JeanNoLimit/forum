@@ -3,7 +3,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: inter ;
+    font-family: inter, Arial, Helvetica, sans-serif ;
 }
 
 a {
@@ -368,6 +368,26 @@ textarea {
 .newTitle{
     min-width: 100%;
     margin-top: 5px;
+}
+
+/* Formulaires inscription et connexion */
+
+.registerAndLoginContainer{
+    max-width: 400px;
+    margin: auto;
+}
+
+/* register and Login form */
+.RALform {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+
+.RALform label{
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 5px; 
 }
 
 

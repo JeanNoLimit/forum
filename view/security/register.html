@@ -1,36 +1,28 @@
-<div class="title">
-    <h1>Inscription</h1>
+<div class="registerAndLoginContainer">
+
+    <div class="title">
+        <h1>Inscription</h1>
+    </div>
+
+    <div id="borderContainer">
+
+    <form action="index.php?ctrl=security&action=register" method="post" class="RALform">
+
+        
+            <label for="pseudo"> pseudo </label>
+                <input type="text" name="pseudo" id="pseudo" class="inputField">
+            
+            <label for="email"> adresse e-mail </label>
+                <input type="text" name="email" id="email" class="inputField">
+            
+            <label for="password"> mot de passe </label> 
+                <input type="password" name="password" id="password" class="inputField">
+            
+            <label for="checkPassword"> confirmation du mot de passe </label>
+                <input type="password" name="checkPassword" id="checkPassword" class="inputField">    
+
+            <input type="submit" value="Envoyer" name="submitRegistration" class="submitButton">
+
+    </form> 
+
 </div>
-
-<div id="borderContainer">
-
-   <form action="index.php?ctrl=security&action=register" method="post">
-
-    <div>
-        <label for="pseudo"> pseudo 
-            <input type="text" name="pseudo" id="pseudo">
-        </label>
-    </div>
-    <div>
-        <label for="email"> adresse e-mail 
-            <input type="text" name="email" id="email">
-        </label>
-    </div>
-    <div>
-        <label for="password"> mot de passe  
-            <input type="password" name="password" id="password">
-        </label>
-    </div>
-    <div>
-        <label for="checkPassword"> confirmation du mot de passe 
-            <input type="password" name="checkPassword" id="checkPassword">
-        </label>
-    </div>
-
-    <div>
-        <input type="submit" value="Envoyer" name="submitRegistration">
-    </div>
-
-
-   </form> 
-
