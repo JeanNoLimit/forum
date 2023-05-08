@@ -14,8 +14,13 @@ $categories = $result["data"]["categories"];
     <?php foreach ($categories as $category){ ?>
 
         <div class="listContainer">
-            <h2><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></h2>
-    </div>
+            <div class="leftCategoryList">
+                <h2><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></h2>
+            </div>
+            <div class="rightCategoryList">
+                <p>Nombre de topics : <?=$category->getNbTopics()?></p>
+            </div>
+        </div>
 
     <?php } ?>
 

@@ -8,6 +8,7 @@ final class Category extends Entity{
 
     private int $id;
     private string $categoryName;
+    private int $nbTopics;
 
     public function __construct($data){
         $this->hydrate($data);
@@ -51,6 +52,26 @@ final class Category extends Entity{
     public function setCategoryName($categoryName)
     {
         $this->categoryName = $categoryName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nbTopics
+     */ 
+    public function getNbTopics()
+    {
+        return $this->nbTopics;
+    }
+
+    /**
+     * Set the value of nbTopics
+     *
+     * @return  self
+     */ 
+    public function setNbTopics($nbTopics)
+    {
+        $this->nbTopics = $nbTopics;
 
         return $this;
     }

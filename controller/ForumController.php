@@ -202,7 +202,7 @@
             return [
                 "view" => VIEW_DIR."forum/listCategory.php",
                 "data" => [
-                    "categories" => $categoryManager->findAll(["categoryName","ASC"])
+                    "categories" => $categoryManager->findAllCategories(["categoryName","ASC"])
                 ]
 
             ];
