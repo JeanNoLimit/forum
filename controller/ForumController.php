@@ -85,12 +85,12 @@
                if($titleTopic && $category_id && $message) {
 
                     //Création du tableau $topicData pour insérer les données dans la table Topic
-                    $topicData=["title"=> $titleTopic, "user_id" =>1, "category_id" => $category_id];
+                    $topicData=["title"=> $titleTopic, "user_id" =>Session::getUser()->getId(), "category_id" => $category_id];
                     //On ajoute les données à la table topic
                     // Et On récupère le dernier identifiant créer pour connaître l'id du topic
                     $id=$topicManager->add($topicData);
                     //Création du tableau $postData pour créer le premier post du nouveau sujet
-                    $postData=["user_id"=> 1, "topic_id"=> $id, "text"=> $message]; 
+                    $postData=["user_id"=>Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message]; 
                     //On ajoute les données à la table post
                     $postManager->add($postData);
 
@@ -149,6 +149,7 @@
              $postManager = new PostManager();
              $closed=$topicManager->findOneById($id)->getClosed();
             
+
             //************ Insertion d'un nouveau message*************//
             if (isset($_POST['messageSubmit'])){
                 
@@ -156,7 +157,7 @@
                 $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
                 //On créer le tableau de data qui sera utilisé par la fonction add du Manager.
                 //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
-                $data = ["user_id"=> 1, "topic_id"=> $id, "text"=> $message];
+                $data = ["user_id"=> Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message];
                 //On récupère la condition "closed" de topic pour vérifier si le topic est bloqué ou non
                 //On vérifie que le topic n'est pas fermé.
                 if($closed==false){
@@ -225,6 +226,7 @@
         /**************************************** VUE formulaire nouvelle catégorie***********************************************************/
 
         // Pour la gestion de la vue formulaire nouvelle catégorie
+
         public function newCategory(){
 
             $categoryManager = new CategoryManager();
