@@ -14,5 +14,6 @@ $user = $result["data"]["user"];
             <p>Date de création du compte : le <?= $user->getinscriptionDate()->format("d-m-Y")?></p>
             <p>Nombre de posts : <?= $user->getNbPosts()?> </p>
             <p>Nombre de Topics créé : <?= $user->getNbTopics()?> </p>
+            <p>Role : <?= $user->getRole() ?></p>
         </div>
 </div>
