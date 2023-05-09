@@ -19,49 +19,51 @@
        
          //affichage de la page index -> affichera la liste des topics triés par date de création décroissante
         public function index(){
-          
-            // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
-           $topicManager = new TopicManager();
-           $postManager = new PostManager();
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
+                // $this->redirectTo("forum", "listTopics", "1"); //pour faire une redirection
+                $topicManager = new TopicManager();
+                $postManager = new PostManager();
 
 
 
-            return [
-                "view" => VIEW_DIR."forum/listTopics.php",
-                "data" => [
-                    "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
-                ]
-            ];
-        
+                return [
+                    "view" => VIEW_DIR."forum/listTopics.php",
+                    "data" => [
+                        "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
+                    ]
+                ];
+            }
         }
         
 
         /*************************************************************Suppression d'un TOPIC****************************************************/ 
 
         public function deleteTopic($id){
-            
-            $topicManager = new TopicManager();
-            $postManager = new PostManager();
+            //Seul les modérateur et les administrateurs peuvent supprimer un topic
+            if(Session::getUser()->hasRole("MODERATOR") || Session::getUser()->hasRole("ROLE_ADMIN")){
+                $topicManager = new TopicManager();
+                $postManager = new PostManager();
 
-            //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
+                //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
+                
+                $posts= $postManager->findPostByTopic($id);
             
-            $posts= $postManager->findPostByTopic($id);
-        
-            foreach ($posts as $post){
-                $idPost=$post->getId();
-                $postManager->delete($idPost);
+                foreach ($posts as $post){
+                    $idPost=$post->getId();
+                    $postManager->delete($idPost);
+                }
+                $topicManager->delete($id);
+                
+
+                return [
+                    "view" => VIEW_DIR."forum/listTopics.php",
+                    "data" => [
+                        "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
+                    ]
+                ];
             }
-            $topicManager->delete($id);
-            
-
-            return [
-                "view" => VIEW_DIR."forum/listTopics.php",
-                "data" => [
-                    "topics" => $topicManager->findAllTopics(["creationDate", "DESC"])
-                ]
-            ];
-
-
         }
         /*********************************************** VUE formulaire Nouveau TOPIC ***********************************************************/
        

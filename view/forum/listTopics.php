@@ -29,7 +29,11 @@ $topics = $result["data"]['topics'];
                     </div>
                     <div class="additionnalContent">
                         <p >date de création : le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?> - </p>
-                        <p><a href="index.php?ctrl=forum&action=deleteTopic&id=<?=$topic->getId()?>">Supprimer </a></p>
+
+                        <?php if(app\Session::getUser()->hasRole("MODERATOR") || app\Session::getUser()->hasRole("ROLE_ADMIN")){ ?>
+
+                            <p><a href="index.php?ctrl=forum&action=deleteTopic&id=<?=$topic->getId()?>">Supprimer </a></p>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="rightListContainer">
