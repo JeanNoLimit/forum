@@ -44,7 +44,7 @@ $topic = $result["data"]["topic"];
 
                 <div class="additionnalContent">
                     <p>message crée le <?=$post->getCreationDate()->format("d-m-Y à h:i")?> - </p>
-                    <p><a href="index.php?ctrl=forum&action=deletePost&id=<?=$post->getId()?>"> Supprimer </a></p>
+                    <p><a href="index.php?ctrl=forum&action=deletePost&id=<?=$post->getId()?>" class="delete-btn"> Supprimer </a></p>
                 </div>
             </div>
         </div>
