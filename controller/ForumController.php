@@ -150,65 +150,81 @@
         /******************************************************Méthodes de gestions des posts********************************************************/
 
        
-        /**************************************** VUE Affichage des posts + formulaire Nouveau post + suppression d'un message ***********************************************************/
+        /**************************************** VUE Affichage des posts + formulaire Nouveau post ***********************************************************/
         // Pour l'affichage de la vue des post d'un topic. 
         public function listPosts($id){
-
-             $topicManager = new TopicManager();
-             $postManager = new PostManager();
-             $closed=$topicManager->findOneById($id)->getClosed();
-            
-
-            //************ Insertion d'un nouveau message*************//
-            if (isset($_POST['messageSubmit'])){
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
+                $topicManager = new TopicManager();
+                $postManager = new PostManager();
+                $closed=$topicManager->findOneById($id)->getClosed();
                 
-                // On filtre le message
-                $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
-                //On créer le tableau de data qui sera utilisé par la fonction add du Manager.
-                //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
-                $data = ["user_id"=> Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message];
-                //On récupère la condition "closed" de topic pour vérifier si le topic est bloqué ou non
-                //On vérifie que le topic n'est pas fermé.
-                if($closed==false){
-                    if($message){
-                         $postManager->add($data) ;
-                         //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                         Session::addFlash("success", "message ajouté");
+
+                //************ Insertion d'un nouveau message*************//
+                if (isset($_POST['messageSubmit'])){
+                    
+                    // On filtre le message
+                    $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
+                    //On créer le tableau de data qui sera utilisé par la fonction add du Manager.
+                    //On attribue un user_id de base car la connection et l'authentification des utilisateurs n'est pas encore gérée.
+                    $data = ["user_id"=> Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message];
+                    //On récupère la condition "closed" de topic pour vérifier si le topic est bloqué ou non
+                    //On vérifie que le topic n'est pas fermé.
+                    if($closed==false){
+                        if($message){
+                            $postManager->add($data) ;
+                            //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                            Session::addFlash("success", "message ajouté");
+                        }
+                    }else{
+                        Session::addFlash("error", "Le Topic est fermé, vous vous pouvez plus poster de nouveau message");
                     }
-                }else{
-                    Session::addFlash("error", "Le Topic est fermé, vous vous pouvez plus poster de nouveau message");
+                    
                 }
-                
-            }
 
-            
-            //*********************** Suppresion d'un message! *********************//
-            if (isset($_GET['deletePost'])){
-                // On récupère l'id du post à supprimer
-                $idPost=$_GET['idPost'];
-                // On récupère l'identifiant du premier topic
-                $firstPost=$postManager->findFirstPost($id);
-                
-                if($idPost==$firstPost["id_post"]){
-                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                    Session::addFlash("error", "impossible de supprimer le message!");
-                }else{
-                       $postManager->delete($idPost);
-                   
-                        Session::addFlash("success", "message supprimé");
-                }
-            
+                return [
+                    "view" => VIEW_DIR."forum/listPost.php",
+                    "data" => [
+                        "posts" => $postManager->findPostByTopic($id),
+                        "topic" => $topicManager->findOneById($id)
+                    ]
+                ];
             }
+        }
+
+        //*************************** Suppresion d'un message! **************************//
+
+        public function deletePost($id){
+
+            $topicManager=new TopicManager();
+            $postManager= new PostManager();
             
+            //On récupère l'id du topic
+            $id_topic=$postManager->findOneById($id)->getTopic()->getId();
+            // On récupère l'identifiant du premier post du topic
+            $firstPost=$postManager->findFirstPost($id_topic);
+                
+            if($id==$firstPost["id_post"]){
+                //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                Session::addFlash("error", "impossible de supprimer le message!");
+            }else{
+                $postManager->delete($id);
+            
+                    Session::addFlash("success", "message supprimé");
+            }
 
             return [
                 "view" => VIEW_DIR."forum/listPost.php",
                 "data" => [
-                    "posts" => $postManager->findPostByTopic($id),
-                    "topic" => $topicManager->findOneById($id)
+                    "posts" => $postManager->findPostByTopic($id_topic),
+                    "topic" => $topicManager->findOneById($id_topic)
                 ]
             ];
         }
+        
+
+
 
 
          /******************************************************Méthodes de gestions des catégories********************************************************/
