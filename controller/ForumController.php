@@ -141,7 +141,7 @@
                 }
                 $this->redirectTo("forum","listTopics");
             }else{
-                Session::addFlash("error", "Vous n'avez pas les droits pour bloquer un topic.");
+                Session::addFlash("error", "Vous n'avez pas les droits pour clôturer un topic.");
                 $this->redirectTo("forum","listTopics");
             }
         }
@@ -199,20 +199,30 @@
 
             $topicManager=new TopicManager();
             $postManager= new PostManager();
-            
+            //Sont autorisés à supprimer un post : L'auteur du post, les modérateurs, les admins.
+            //On récupère l'id de l'user en session pour le comparer avec l'user_id du post.
+            $id_user= Session::getUser()->getId();
+            $user_id=$postManager->findOneById($id)->getUser()->getId();
+           
             //On récupère l'id du topic
             $id_topic=$postManager->findOneById($id)->getTopic()->getId();
             // On récupère l'identifiant du premier post du topic
             $firstPost=$postManager->findFirstPost($id_topic);
+
+            if($id_user==$user_id||Session::getUser()->hasRole("MODERATOR") || Session::getUser()->hasRole("ROLE_ADMIN")){
+ 
+                if($id==$firstPost["id_post"]){
+                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                    Session::addFlash("error", "impossible de supprimer le message!");
+                }else{
+                    $postManager->delete($id);
                 
-            if($id==$firstPost["id_post"]){
-                //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                Session::addFlash("error", "impossible de supprimer le message!");
+                        Session::addFlash("success", "message supprimé");
+                }
             }else{
-                $postManager->delete($id);
-            
-                    Session::addFlash("success", "message supprimé");
+                Session::addFlash("error", "impossible de supprimer le message!");
             }
+
 
             return [
                 "view" => VIEW_DIR."forum/listPost.php",
