@@ -18,6 +18,8 @@ $users = $result["data"]["users"];
             <div class="listContainer">
                 <div class="leftListContainer">
                     <h2><?= $user->getPseudo() ?></h2>
+                    <p>date d'inscription : <?=$user->getinscriptionDate()->format("d-m-Y")?></p>
+                    <p>role : <?=$user->getRole()?></p>
                 </div>
                 <div class="rightListContainer">
                 </div>
