@@ -22,17 +22,18 @@
         
    
         public function users(){
-            $this->restrictTo("ROLE_USER");
-
+            
+           $this->restrictTo("ROLE_ADMIN");
             $manager = new UserManager();
-            $users = $manager->findAll(['registerdate', 'DESC']);
+                        $users = $manager->findAll(['inscriptionDate', 'DESC']);
 
-            return [
-                "view" => VIEW_DIR."security/users.php",
-                "data" => [
-                    "users" => $users
-                ]
-            ];
+                        return [
+                            "view" => VIEW_DIR."security/users.php",
+                            "data" => [
+                                "users" => $users
+                            ]
+                        ];
+            
         }
 
         public function forumRules(){
