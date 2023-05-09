@@ -12,6 +12,8 @@
         private string $password;
         private \DateTime $inscriptionDate;
         private string $role;
+        private int $nbPosts;
+        private int $nbTopics;
 
         public function __construct($data){
             $this->hydrate($data);
@@ -148,9 +150,47 @@
                 return $this;
         }
 
+        /**
+         * Get the value of nbPosts
+         */ 
+        public function getNbPosts()
+        {
+                return $this->nbPosts;
+        }
+
+        /**
+         * Set the value of nbPosts
+         *
+         * @return  self
+         */ 
+        public function setNbPosts($nbPosts)
+        {
+                $this->nbPosts = $nbPosts;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of nbTopics
+         */ 
+        public function getNbTopics()
+        {
+                return $this->nbTopics;
+        }
+
+        /**
+         * Set the value of nbTopics
+         *
+         * @return  self
+         */ 
+        public function setNbTopics($nbTopics)
+        {
+                $this->nbTopics = $nbTopics;
+
+                return $this;
+        } 
+        
         public function __toString(){
                 return $this->pseudo;
         }
-
-
     }
