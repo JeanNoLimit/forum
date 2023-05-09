@@ -245,16 +245,19 @@
 
         //Pour gestion de la vue de la liste des catégories
         public function listCategory(){
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
+                $categoryManager = new CategoryManager();
 
-            $categoryManager = new CategoryManager();
+                return [
+                    "view" => VIEW_DIR."forum/listCategory.php",
+                    "data" => [
+                        "categories" => $categoryManager->findAllCategories(["categoryName","ASC"])
+                    ]
 
-            return [
-                "view" => VIEW_DIR."forum/listCategory.php",
-                "data" => [
-                    "categories" => $categoryManager->findAllCategories(["categoryName","ASC"])
-                ]
-
-            ];
+                ];
+            }
 
         }
 
@@ -263,28 +266,31 @@
         // Pour la gestion de la vue formulaire nouvelle catégorie
 
         public function newCategory(){
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
+                $categoryManager = new CategoryManager();
 
-            $categoryManager = new CategoryManager();
+                if(isset($_POST["submitNewCategory"])){
 
-            if(isset($_POST["submitNewCategory"])){
-
-                $categoryName=filter_input(INPUT_POST,"categoryName",  FILTER_SANITIZE_SPECIAL_CHARS);
+                    $categoryName=filter_input(INPUT_POST,"categoryName",  FILTER_SANITIZE_SPECIAL_CHARS);
 
 
-                if($categoryName){
-                    $data=['categoryName' =>$categoryName];
-                    $categoryManager -> add($data);
+                    if($categoryName){
+                        $data=['categoryName' =>$categoryName];
+                        $categoryManager -> add($data);
 
-                    //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                    Session::addFlash("success", "Nouvelle catégorie ajoutée");
+                        //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                        Session::addFlash("success", "Nouvelle catégorie ajoutée");
 
+                    }
                 }
+
+
+                return[
+                    "view" => VIEW_DIR."forum/newCategory.php"
+                ];
             }
-
-
-            return[
-                "view" => VIEW_DIR."forum/newCategory.php"
-            ];
         }
 
 
@@ -292,17 +298,20 @@
 
         //Pour la gestion de la vue liste des topics d'une catégorie.
         public function listTopicsByCategory($id){
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
+                $topicManager = new TopicManager();
+                $categoryManager = new CategoryManager();
 
-            $topicManager = new TopicManager();
-            $categoryManager = new CategoryManager();
-
-            return [
-                "view" =>VIEW_DIR."forum/listTopicsByCategory.php",
-                "data" => [
-                    "topics" => $topicManager->findTopicsByCategory($id),
-                    "category"=> $categoryManager->findOneById($id)
-                ]
-            ];
+                return [
+                    "view" =>VIEW_DIR."forum/listTopicsByCategory.php",
+                    "data" => [
+                        "topics" => $topicManager->findTopicsByCategory($id),
+                        "category"=> $categoryManager->findOneById($id)
+                    ]
+                ];
+            }
         }
             // $idLastpost = $Postrepo->add($data);
         
