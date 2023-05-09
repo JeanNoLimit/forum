@@ -69,45 +69,48 @@
        
         //Affiche la page nouveau topic et gère la réception du formulaire
         public function newTopic(){
-
+            if(!Session::getUser()){
+                $this-> redirectTo("security","signin");
+            }else{
             //Instanciation des classes nécessaires à l'insertion des données du formulaire dans la bdd et à l'affichage du formulaire  
-            $topicManager = new TopicManager();
-            $postManager = new PostManager();
-            $categoryManager = new CategoryManager();
+                $topicManager = new TopicManager();
+                $postManager = new PostManager();
+                $categoryManager = new CategoryManager();
 
-            if (isset($_POST['submitNewTopic'])){
-                
-                //On filtre les données
-                $titleTopic=filter_input(INPUT_POST, "titleTopic",  FILTER_SANITIZE_SPECIAL_CHARS);
-                $category_id=filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
-                $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
+                if (isset($_POST['submitNewTopic'])){
+                    
+                    //On filtre les données
+                    $titleTopic=filter_input(INPUT_POST, "titleTopic",  FILTER_SANITIZE_SPECIAL_CHARS);
+                    $category_id=filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
+                    $message=filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                
-                
-               if($titleTopic && $category_id && $message) {
+                    
+                    
+                if($titleTopic && $category_id && $message) {
 
-                    //Création du tableau $topicData pour insérer les données dans la table Topic
-                    $topicData=["title"=> $titleTopic, "user_id" =>Session::getUser()->getId(), "category_id" => $category_id];
-                    //On ajoute les données à la table topic
-                    // Et On récupère le dernier identifiant créer pour connaître l'id du topic
-                    $id=$topicManager->add($topicData);
-                    //Création du tableau $postData pour créer le premier post du nouveau sujet
-                    $postData=["user_id"=>Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message]; 
-                    //On ajoute les données à la table post
-                    $postManager->add($postData);
+                        //Création du tableau $topicData pour insérer les données dans la table Topic
+                        $topicData=["title"=> $titleTopic, "user_id" =>Session::getUser()->getId(), "category_id" => $category_id];
+                        //On ajoute les données à la table topic
+                        // Et On récupère le dernier identifiant créer pour connaître l'id du topic
+                        $id=$topicManager->add($topicData);
+                        //Création du tableau $postData pour créer le premier post du nouveau sujet
+                        $postData=["user_id"=>Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message]; 
+                        //On ajoute les données à la table post
+                        $postManager->add($postData);
 
-                     //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
-                     Session::addFlash("success", "Nouveau topic créé");
+                        //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
+                        Session::addFlash("success", "Nouveau topic créé");
+                    }
                 }
+
+                return [
+                    "view" => VIEW_DIR."forum/newTopic.php",
+                    "data" => [
+                        "categories" => $categoryManager->findAll(["categoryName","ASC"])
+                    ]
+
+                ];
             }
-
-            return [
-                "view" => VIEW_DIR."forum/newTopic.php",
-                "data" => [
-                    "categories" => $categoryManager->findAll(["categoryName","ASC"])
-                ]
-
-            ];
         }
 
         //**********************************************Vérouillage/dévérouillage d'un topic ******************************************//
