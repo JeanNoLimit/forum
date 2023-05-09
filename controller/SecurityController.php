@@ -122,13 +122,20 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
         
     }
-//Gestion de la vue viewProfile
+
+
+//Gestion de la vue viewProfile de l'utilisateur connecté
 public function viewProfile(){
 
+    $userManager= new UserManager;
+    $id=Session::getUser()->getId();
     return [
-        "view" => VIEW_DIR."security/viewProfile.php"
+        "view" => VIEW_DIR."security/viewProfile.php",
+        "data" => [ "user"=> $userManager ->findProfil($id)]
     ];
 }
+
+
 
 //Gestion de la deconnection
 public function logout(){
