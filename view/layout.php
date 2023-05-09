@@ -36,14 +36,15 @@
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="/security/logout.html">Déconnexion</a>
+                            <a href="index.php?ctrl=forum&action=listTopics">Liste des sujets</a>
+                            <a href="index.php?ctrl=forum&action=listCategory">Liste des categories</a>
                             <?php
                         }
                         else{
                             ?>
                             <a href="index.php?ctrl=security&action=signin">Connexion</a>
                             <a href="index.php?ctrl=security&action=signup">Inscription</a>
-                            <a href="index.php?ctrl=forum&action=listTopics">Liste des sujets</a>
-                            <a href="index.php?ctrl=forum&action=listCategory">Liste des categories</a>
+                            
                         <?php
                         }
                    
