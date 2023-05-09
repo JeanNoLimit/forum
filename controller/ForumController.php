@@ -116,30 +116,34 @@
         //**********************************************Vérouillage/dévérouillage d'un topic ******************************************//
 
         public function switchLock($id){
+            if(Session::getUser()->hasRole("MODERATOR") || Session::getUser()->hasRole("ROLE_ADMIN")){
+                $topicManager = new TopicManager();
+                
+                $statut=$topicManager->findOneById($id)->getClosed();
+                // var_dump($statut);die;
 
-            $topicManager = new TopicManager();
-            
-            $statut=$topicManager->findOneById($id)->getClosed();
-            // var_dump($statut);die;
+                switch ($statut) {
 
-            switch ($statut) {
+                    case false:
 
-                case false:
+                        $statut=1;
+                        $topicManager->changeStatut($id,$statut);
+                        Session::addFlash("success", "Le topic est fermé");
+                        break;
 
-                    $statut=1;
-                    $topicManager->changeStatut($id,$statut);
-                    Session::addFlash("success", "Le topic est fermé");
-                    break;
-
-                case true:
-                   
-                    $statut=0;
-                    $topicManager->changeStatut($id,$statut);
-                    // var_dump($statut);die;
-                    Session::addFlash("success", "Le topic est réouvert");
-                    break;
+                    case true:
+                    
+                        $statut=0;
+                        $topicManager->changeStatut($id,$statut);
+                        // var_dump($statut);die;
+                        Session::addFlash("success", "Le topic est réouvert");
+                        break;
+                }
+                $this->redirectTo("forum","listTopics");
+            }else{
+                Session::addFlash("error", "Vous n'avez pas les droits pour bloquer un topic.");
+                $this->redirectTo("forum","listTopics");
             }
-            $this->redirectTo("forum","listTopics");
         }
                     
     
