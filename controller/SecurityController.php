@@ -49,7 +49,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                                 //rappel : strcmp -> comparaison binaire de chaînes. La comparaison est sensible à la casse.
                                 if(strcmp($password, $password2) ==0){
                                     if(strlen($password)>=4 && strlen($password)<=16){
-                                         // Si l'inscription c'est bien passé :
+                                         // Si l'inscription c'est bien passée :
                                         $password=password_hash($password,PASSWORD_DEFAULT);
                                         //Rôle par défaut -> USER
                                         $data=["email" => $email, "pseudo" => $pseudo, "password" => $password, "role" => "USER"];
@@ -122,9 +122,27 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
         
     }
+//Gestion de la vue viewProfile
+public function viewProfile(){
 
+    return [
+        "view" => VIEW_DIR."security/viewProfile.php"
+    ];
+}
 
+//Gestion de la deconnection
+public function logout(){
 
+    if(Session::getUser()){
+
+        session_destroy();
+        $this->redirectTo("index");
+
+        // Session::addFlash("success", "vous avez été déconnecté");
+
+    }
+
+}
 
 
 
