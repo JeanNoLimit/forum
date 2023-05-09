@@ -41,6 +41,23 @@ class UserManager extends Manager{
         );
         
     }
+    //Requête qui remplace findOneById pour afficher le nombre de posts et le nombre de topic créé par l'utilisateur dans la vue viewProfil
+    public function findProfil($id){
+
+        $sql = "SELECT *, (SELECT COUNT(*) 
+        FROM post
+        WHERE user_id= :id)
+        AS nbPosts, (SELECT COUNT(*)
+        FROM topic
+        WHERE user_id= :id) AS nbTopics
+        FROM user
+        WHERE id_user= :id";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql, ['id' => $id], false), 
+                $this->className
+            );
+    }
 
 
 
