@@ -261,6 +261,44 @@
 
         }
 
+        /***********************Suppression d'une catégorie************************************/
+
+        public function deleteCategory($id){
+            if(Session::isAdmin()){
+                $categoryManager = new CategoryManager();
+                $topicManager = new TopicManager();
+                $postManager = new PostManager();
+
+                $topics = $topicManager->findTopicsByCategory($id);
+                if(!empty($topics)){
+                    foreach($topics as $topic) {
+                        $idTopic=$topic->getId();
+                        $posts=$postManager->findPostByTopic($idTopic);
+                        foreach($posts as $post){
+                            $idPost=$post->getId();
+                            $postManager->delete($idPost);
+                        }
+                    $topicManager->delete($idTopic);
+                    }
+                }
+                $categoryManager->delete($id);
+
+                Session::addFlash("success", "Catégorie supprimée avec succès!");
+                
+
+                return [
+                    "view" => VIEW_DIR."forum/listCategory.php",
+                    "data" => [
+                        "categories" => $categoryManager->findAllCategories(["categoryName","ASC"])
+                    ]
+
+                ];
+            }else{
+                $this-> redirectTo("forum","listCategory");
+            }
+
+        }
+
         /**************************************** VUE formulaire nouvelle catégorie***********************************************************/
 
         // Pour la gestion de la vue formulaire nouvelle catégorie

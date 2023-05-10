@@ -16,6 +16,11 @@ $categories = $result["data"]["categories"];
         <div class="listContainer">
             <div class="leftCategoryList">
                 <h2><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?=$category->getId() ?>"><?=$category->getCategoryName() ?></a></h2>
+                <?php if(app\Session::isAdmin()) { ?>
+                    <div class="additionnalContent">
+                        <p><a href="index.php?ctrl=forum&action=deleteCategory&id=<?=$category->getId() ?>" class="delete-btn">supprimer</a></p>
+                    </div>
+                <?php } ?>
             </div>
             <div class="rightCategoryList">
                 <p>Nombre de topics : <?=$category->getNbTopics()?></p>
