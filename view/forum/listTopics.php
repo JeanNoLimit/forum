@@ -30,7 +30,9 @@ $topics = $result["data"]['topics'];
                     <div class="additionnalContent">
                         <p >date de création : le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?></p>
 
-                        <?php if(app\Session::getUser()->hasRole("MODERATOR") || app\Session::getUser()->hasRole("ROLE_ADMIN")){ ?>
+                        <?php 
+                        
+                        if(app\Session::getUser()->getId()==$topic->getUser()->getId()||app\Session::getUser()->hasRole("MODERATOR") || app\Session::getUser()->hasRole("ROLE_ADMIN")){ ?>
 
                             <p><a href="index.php?ctrl=forum&action=deleteTopic&id=<?=$topic->getId()?>" class="delete-btn">- Supprimer </a></p>
                         <?php } ?>

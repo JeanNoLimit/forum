@@ -41,10 +41,17 @@
         /*************************************************************Suppression d'un TOPIC****************************************************/ 
 
         public function deleteTopic($id){
-            //Seul les modérateur et les administrateurs peuvent supprimer un topic
-            if(Session::getUser()->hasRole("MODERATOR") || Session::getUser()->hasRole("ROLE_ADMIN")){
-                $topicManager = new TopicManager();
-                $postManager = new PostManager();
+
+            $topicManager = new TopicManager();
+            $postManager = new PostManager();
+
+
+            //Seul les modérateur et les administrateurs et l'auteur du topic peuvent supprimer un topic
+            $id_user=Session::getUser()->getId();
+            $user_id=$topicManager->findOneById($id)->getUser()->getId();
+
+            if($id_user==$user_id || Session::getUser()->hasRole("MODERATOR") || Session::getUser()->hasRole("ROLE_ADMIN")){
+                
 
                 //Suppression d'un topic. Il faut d'abord supprimer les posts contenu dans le topic
                 
