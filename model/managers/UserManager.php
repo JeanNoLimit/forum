@@ -53,12 +53,21 @@ class UserManager extends Manager{
         FROM user
         WHERE id_user= :id";
 
-            return $this->getOneOrNullResult(
-                DAO::select($sql, ['id' => $id], false), 
-                $this->className
-            );
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['id' => $id], false), 
+            $this->className
+        );
     }
 
+    public function changeRole($id, $role){
+
+        $sql="UPDATE ".$this->tableName."
+        SET role = :test
+        WHERE id_user = :id";
+
+        return 
+            DAO::update($sql, ["test" => $role, "id" => $id]);
+    }
 
 
 }
