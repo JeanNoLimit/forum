@@ -28,19 +28,21 @@ $topics = $result["data"]['topics'];
                         
                     </div>
                     <div class="additionnalContent">
-                        <p >date de création : le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?></p>
-
+                        
+                        <p>Dernier message posté le : <?=$topic->getLastPost()->format("d-m-Y à H:i")?></p>
                         <?php 
                         
                         if(app\Session::getUser()->getId()==$topic->getUser()->getId()||app\Session::getUser()->hasRole("MODERATOR") || app\Session::getUser()->hasRole("ROLE_ADMIN")){ ?>
 
                             <p><a href="index.php?ctrl=forum&action=deleteTopic&id=<?=$topic->getId()?>" class="delete-btn">- Supprimer </a></p>
                         <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="rightListContainer">
                     <p>par <span class="user"><?=$topic->getUser()->getPseudo()?></span></p>
                     <p>Nombre de posts : <?=$topic->getNbPosts() ?></p>
+                    <p class="creationDate">Créé le <?=$topic->getCreationDate()->format("d-m-Y à H:i")?></p>
                 </div>
             </div>
             <?php
