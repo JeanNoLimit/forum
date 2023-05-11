@@ -13,8 +13,9 @@ $users = $result["data"]["users"];
 
 
     <?php
-        foreach($users as $user){ ?>
-
+        foreach($users as $user){
+           ?>
+         
             <div class="listContainer">
                 <div class="leftListContainer">
                     <h2><?= $user->getPseudo() ?></h2>
@@ -28,8 +29,8 @@ $users = $result["data"]["users"];
 
                         <?php
 
-                            $roles=["USER","MODERATOR","ROLE_ADMIN","BANNED"];
 
+                            $roles=["USER","MODERATOR","ROLE_ADMIN","BANNED"];
                             foreach($roles as $role){?>
                                 <div>
                                     <input type="radio" id="role" name="role" value="<?=$role?>" <?php if($user->getRole()==$role){  echo "checked"; }; ?> > 
