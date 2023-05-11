@@ -311,9 +311,8 @@
         // Pour la gestion de la vue formulaire nouvelle catégorie
 
         public function newCategory(){
-            if(!Session::getUser()){
-                $this-> redirectTo("security","signin");
-            }else{
+            
+            if(Session::isAdmin()){
                 $categoryManager = new CategoryManager();
 
                 if(isset($_POST["submitNewCategory"])){

@@ -3,10 +3,11 @@ $categories = $result["data"]["categories"];
 
 ?>
 <div id="generalContainer">
-
-    <div class="button newList">
-        <a href="index.php?ctrl=forum&action=newCategory">Nouvelle catégorie</a>
-    </div>
+    <?php  if(app\Session::isAdmin()){ ?>
+        <div class="button newList">
+            <a href="index.php?ctrl=forum&action=newCategory">Nouvelle catégorie</a>
+        </div>
+    <?php } ?>
     <div class="title">
         <h1>Liste des catégories</h1>
     </div>
