@@ -260,6 +260,11 @@ footer{
     background-color: rgba(0, 128, 0, 0.4);
 }
 
+.greyButton {
+    background-color:rgba(100, 97, 97, 0.7);
+    color: white;
+}
+
 /* Section qui contient la liste des messages */
 .newPost {
     margin: 20px 35px; 

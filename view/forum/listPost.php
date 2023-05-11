@@ -13,16 +13,25 @@ $topic = $result["data"]["topic"];
             <h1><?=$topic->getTitle()?></h1>
             <p class="additionnalContent">date de création : le <?=$topic->getCreationDate()->format("d-m-Y à h:i")?></p>
         </div class="rightTitle">
-        <?php if($topic->getClosed()){ ?>
 
-        <div class="closedButton redButton">
-            <a href="index.php?ctrl=forum&action=switchLock&id=<?=$topic->getId()?>">Topic fermé <i class="fa-solid fa-lock"></i> </a>
-        </div>
-        <?php }else { ?>
-            <div class="closedButton greenButton">
-            <a href="index.php?ctrl=forum&action=switchLock&id=<?=$topic->getId()?>">Topic ouvert <i class="fa-solid fa-unlock"></i></i></a>
-        </div>
-        <?php } ?>
+        <?php if(app\Session::GetUser()->hasRole("MODERATOR")||app\Session::GetUser()->hasrole("ROLE_ADMIN")){
+                    if($topic->getClosed()){ ?>
+
+                    <div class="closedButton redButton">
+                        <a href="index.php?ctrl=forum&action=switchLock&id=<?=$topic->getId()?>">Topic fermé <i class="fa-solid fa-lock"></i> </a>
+                    </div>
+                    <?php }else { ?>
+                        <div class="closedButton greenButton">
+                        <a href="index.php?ctrl=forum&action=switchLock&id=<?=$topic->getId()?>">Topic ouvert <i class="fa-solid fa-unlock"></i></i></a>
+                    </div>
+                    <?php }
+                }else{
+                    if($topic->getClosed()){?>
+                        <div class="closedButton greyButton">
+                        <p>Topic fermé <i class="fa-solid fa-lock"></i></p>
+                    </div>
+                <?php }
+             } ?>
     </div>
     <div id="borderContainer">
     <div class="button newPost">
@@ -43,8 +52,12 @@ $topic = $result["data"]["topic"];
                 <p class="content"><?=$post->getText()?></p>
 
                 <div class="additionnalContent">
-                    <p>message crée le <?=$post->getCreationDate()->format("d-m-Y à h:i")?> - </p>
-                    <p><a href="index.php?ctrl=forum&action=deletePost&id=<?=$post->getId()?>" class="delete-btn"> Supprimer </a></p>
+                    <p>message crée le <?=$post->getCreationDate()->format("d-m-Y à h:i")?> </p>
+
+                    <?php if(app\Session::getUser()->getId()==$post->getUser()->getId()||app\Session::getUser()->hasRole("MODERATOR") || app\Session::getUser()->hasRole("ROLE_ADMIN")){ ?>
+
+                         <p><a href="index.php?ctrl=forum&action=deletePost&id=<?=$post->getId()?>" class="delete-btn"> - Supprimer </a></p>
+                    <?php }; ?>
                 </div>
             </div>
         </div>
