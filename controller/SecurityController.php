@@ -104,18 +104,25 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 $user=$userManager->findEmail($email);
                 // var_dump($user);die;
 
-                if(!$user){
+                if($user){
+                    if(password_verify($password, $user->getPassword())){
+                        if(!$user->hasRole("BANNED")){
+                            Session::setUser($user);
+                            $this->redirectTo("forum","index"); //Penser à rediriger vers home lorsque cela sera possible.
+                        }else{
+                            Session::addFlash("error", "Vous avez été banni, veuillez contacter l'admin du forum pour plus d'informations");
+                            $this-> redirectTo("security","signin");
+                        }
+
+                    }else{
+                        Session::addFlash("error", "Mot de passe incorrect");
+                        $this-> redirectTo("security","signin");
+                    }
+                }else{
                     Session::addFlash("error", "Veuillez rentrer une adresse valide");
                     $this-> redirectTo("security","signin");
-                }elseif(password_verify($password, $user->getPassword())==false){
-                    Session::addFlash("error", "Mot de passe incorrect");
-                    $this-> redirectTo("security","signin");
-                }else{
-                    //var_dump($user->getRole());die;
-                    Session::setUser($user);
-                    
-                    $this->redirectTo("forum","index"); //Penser à rediriger vers home lorsque cela sera possible.
                 }
+
             }  
 
 
