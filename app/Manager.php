@@ -74,7 +74,7 @@
 
             return DAO::delete($sql, ['id' => $id]); 
         }
-
+        //https://www.php.net/manual/fr/language.generators.syntax.php
         private function generate($rows, $class){
             foreach($rows as $row){
                 yield new $class($row);
