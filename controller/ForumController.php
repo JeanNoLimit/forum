@@ -146,10 +146,10 @@
                         Session::addFlash("success", "Le topic est réouvert");
                         break;
                 }
-                $this->redirectTo("forum","listTopics");
+                $this->redirectTo("forum","listPosts&id=$id");
             }else{
                 Session::addFlash("error", "Vous n'avez pas les droits pour clôturer un topic.");
-                $this->redirectTo("forum","listTopics");
+                $this->redirectTo("forum","listPosts&id=$id");
             }
         }
                     
