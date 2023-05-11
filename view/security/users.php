@@ -22,6 +22,25 @@ $users = $result["data"]["users"];
                     <p>role : <?=$user->getRole()?></p>
                 </div>
                 <div class="rightListContainer">
+                    <form action="index.php?ctrl=security&action=switchRole&id=<?=$user->getId()?>" method="post">
+                    <p>Modifier le rôle :</p>
+                    <div class=changeRole>
+
+                        <?php
+
+                            $roles=["USER","MODERATOR","ROLE_ADMIN","BANNED"];
+
+                            foreach($roles as $role){?>
+                                <div>
+                                    <input type="radio" id="role" name="role" value="<?=$role?>" <?php if($user->getRole()==$role){  echo "checked"; }; ?> > 
+                                    <label for="role"><?=$role?></label>
+                                </div>
+
+                        <?php } ?>
+                        
+                    </div>
+                        <input type="submit" value="Envoyer" name="submitNewRole" class="submitButton">
+                    </form>
                 </div>
             </div>  
 
