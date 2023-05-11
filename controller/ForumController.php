@@ -104,9 +104,10 @@
                         $postData=["user_id"=>Session::getUser()->getId(), "topic_id"=> $id, "text"=> $message]; 
                         //On ajoute les données à la table post
                         $postManager->add($postData);
-
+                        
                         //  addFlash permet d'afficher un message en haut de l'écran, lors de l'ajout du post.
                         Session::addFlash("success", "Nouveau topic créé");
+                        $this->redirectTo("forum","listPosts", $id);
                     }
                 }
 
@@ -146,10 +147,10 @@
                         Session::addFlash("success", "Le topic est réouvert");
                         break;
                 }
-                $this->redirectTo("forum","listPosts&id=$id");
+                $this->redirectTo("forum","listPosts", $id);
             }else{
                 Session::addFlash("error", "Vous n'avez pas les droits pour clôturer un topic.");
-                $this->redirectTo("forum","listPosts&id=$id");
+                $this->redirectTo("forum","listPosts", $id);
             }
         }
                     
