@@ -120,7 +120,7 @@ nav {
 .listContainer {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     padding: 5px 30px;
     background-color: #DEE4F7;
     border-bottom: solid 1px #AEAEAE;
@@ -137,7 +137,7 @@ nav {
 .additionnalContent {
     display: flex;
     flex-direction: row;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-style: italic;
     padding: 5px;
 }
@@ -213,6 +213,11 @@ footer{
 
 .user {
     color: #6E96E9 ;
+}
+
+.creationDate {
+    font-size: 0.7em;
+    font-style: italic;
 }
 
 
