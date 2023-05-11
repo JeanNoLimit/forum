@@ -38,9 +38,14 @@
                 "";
 
             $sql = "SELECT *, (SELECT COUNT(*)
-            FROM post p
-            WHERE id_topic=p.topic_id) as nbPosts
-            FROM topic t            
+                    FROM post p
+                    WHERE id_topic=p.topic_id) as nbPosts, (SELECT p.creationDate
+                    FROM post p
+                    WHERE p.topic_id=t.id_topic AND p.id_post>=ALL(
+                        SELECT id_post
+                        FROM post
+                        WHERE topic_id=t.id_topic)) AS lastPost
+                    FROM topic t            
                     ".$orderQuery;
 
             return $this->getMultipleResults(
