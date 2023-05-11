@@ -151,6 +151,29 @@ public function logout(){
 
 }
 
+//changement de rôle dans la vue users. 
+
+public function switchRole($id){
+
+    if(Session::isAdmin()){
+
+        $userManager = new UserManager();
+        
+            if(isset($_POST["submitNewRole"])){
+
+                $role=filter_input(INPUT_POST, "role",  FILTER_SANITIZE_SPECIAL_CHARS);
+
+                if($role){
+                    $userManager->changeRole($id, $role);
+                }
+            }
+        return [
+            "view" => VIEW_DIR."security/users.php",
+            "data" => [ "users" => $userManager->findAll(['inscriptionDate', 'DESC'])]
+        ];
+    }
+
+}
 
 
 
