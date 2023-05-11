@@ -414,3 +414,10 @@ textarea {
     margin: auto;
 }
 
+/***********************************************Vue users*******************************************************************/
+
+.changeRole {
+
+    display: flex;
+    flex-direction: column;
+}
